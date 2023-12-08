@@ -1,2 +1,2 @@
-# 42CPP
+# CPP42
 CPP Module
