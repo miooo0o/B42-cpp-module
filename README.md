@@ -14,7 +14,7 @@ RM		=	rm
 NAME		=	megaphone
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./
-#INCLUDE	=	-I ./include/
+#INCLUDE	=	-I ./src/
 #LIBS_DIR	=	./lib/
 		
 # sources

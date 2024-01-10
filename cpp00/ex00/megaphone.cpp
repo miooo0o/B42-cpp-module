@@ -8,7 +8,6 @@ int	main(int ac, char **av)
 	return (0);
 }
 
-
 int main(int argc, char *argv[]) { // 메인 함수 시작. argc는 인자의 개수, argv는 인자의 배열을 나타냄
 	if (argc < 2) { // 인자가 없는 경우 (argc가 2 미만일 때, argc는 프로그램 이름도 포함하므로 인자가 없으면 값이 1이 됨)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl; // 에러 메시지 출력
