@@ -1,11 +1,5 @@
 #include "PhoneBook.h"
 
-void	showPrompt(void)
-{
-	cout << "welcome to the 80s and their unbelievable technology!" << endl
-		 << "enter one of three options: ADD, SEARCH, EXIT"<< endl;
-}
-
 bool	till_getline(string &cmd)
 {
 	if (cin.good() || !cin.eof() ||  !cmd.empty())
@@ -17,8 +11,9 @@ int	main()
 {
 	PhoneBook	phonebook;
 	string		cmd;
-	
-	showPrompt();
+
+	cout << "welcome to the 80s and their unbelievable technology!" << endl
+			<< "enter one of three options: ADD, SEARCH, EXIT"<< endl;
 	while (till_getline(cmd))
 	{
 		if (cmd == "ADD")
@@ -29,7 +24,7 @@ int	main()
 			break ;
 		else
 			cerr << "warning! unrecognized command :" << cmd << endl
-				 << "enter one of three options: ADD, SEARCH, EXIT" << endl;
+					<< "enter one of three options: ADD, SEARCH, EXIT" << endl;
 	}
 	std::cout << "EXIT" << std::endl;
 	return (EXIT_SUCCESS);

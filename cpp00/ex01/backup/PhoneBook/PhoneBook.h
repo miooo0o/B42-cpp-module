@@ -1,4 +1,3 @@
-
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
@@ -16,10 +15,21 @@ using namespace std;
 /// ADD: save a new contact
 /// SEARCH: display a specific contact
 /// EXIT
-
 class PhoneBook {
+public:
+	PhoneBook();
+	~PhoneBook();
 
+	void	addContact(void);
+	void	searchContact(void);
+	bool	tryCreateNewContact();
+	bool	promptForField(const std::string& fieldName, e_Field field);
+	void	increaseCount(void);
+	
+private:
+	int		_count;
+	Contact	_new_contact;
+	Contact	_contacts[MAX_CONTACT];
 };
-
 
 #endif

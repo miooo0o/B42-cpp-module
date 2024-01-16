@@ -8,7 +8,7 @@ RM			= rm
 NAME		=	phonebook
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
-#INCLUDE		=	-I ./src/
+#INCLUDE		=	-I ./backup/
 #LIBS_DIR	=	./lib/
 
 # sources
