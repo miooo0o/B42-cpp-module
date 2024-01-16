@@ -25,10 +25,16 @@ typedef enum e_Field {
 
 class Contact {
 public:
-	;
+	Contact();
+	~Contact();
+	
 private:
 	int		_index;
-	
+	string	_firstName;
+	string	_lastName;
+	string	_nickname;
+	string	_phoneNumber;
+	string	_darkestSecret;
 };
 
 
