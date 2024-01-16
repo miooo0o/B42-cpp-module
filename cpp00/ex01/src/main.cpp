@@ -6,20 +6,13 @@ void	showPrompt(void)
 		 << "enter one of three options: ADD, SEARCH, EXIT"<< endl;
 }
 
-bool	till_getline(string &cmd)
-{
-	if (cin.good() || !cin.eof() ||  !cmd.empty())
-		return (true);
-	return (false);
-}
-
 int	main()
 {
 	PhoneBook	phonebook;
 	string		cmd;
 	
 	showPrompt();
-	while (till_getline(cmd))
+	while (true)
 	{
 		if (cmd == "ADD")
 			phonebook.addContact();
@@ -31,6 +24,6 @@ int	main()
 			cerr << "warning! unrecognized command :" << cmd << endl
 				 << "enter one of three options: ADD, SEARCH, EXIT" << endl;
 	}
-	std::cout << "EXIT" << std::endl;
+	cout << "EXIT" << std::endl;
 	return (EXIT_SUCCESS);
 }

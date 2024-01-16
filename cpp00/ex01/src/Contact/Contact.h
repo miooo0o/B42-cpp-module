@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <map>
 
 using namespace std;
 
@@ -22,12 +21,14 @@ typedef enum e_Field {
 
 /// It can store a maximum of 8 contacts.
 /// If the user tries to add a 9th contact, replace the oldest one by the new one.
-
 class Contact {
 public:
 	Contact();
 	~Contact();
-	
+
+	bool	Contact::setField(t_Field field, const std::string& value);
+	bool	Contact::setIndex(int index);
+
 private:
 	int		_index;
 	string	_firstName;
