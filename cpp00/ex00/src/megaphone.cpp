@@ -2,13 +2,13 @@
 #include <cctype>
 #include <cstring>
 
-typedef int (*f)(int);
+typedef int (*f_trans_to)(int);
 
-std::string	ft_transform(char *str, f transform_func)
+std::string	ft_transform(char *str, f_trans_to f)
 {
 	std::string	res(str);
 	for (size_t i = 0; i < res.size() && i < std::strlen(str); i++)
-		res[i] = transform_func(str[i]);
+		res[i] = f(str[i]);
 	return (res);
 }
 
