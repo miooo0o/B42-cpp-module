@@ -5,12 +5,6 @@
 PhoneBook::PhoneBook()	{ _count = 0; }
 PhoneBook::~PhoneBook()	{}
 
-
-void	printError(const std::string& msg)
-{
-	cerr << msg << endl;
-}
-
 bool	ignoreWhitespace()
 {
 	cin.clear();
@@ -23,7 +17,7 @@ bool	isInputValid(const std::string& input)
 	return (!cin.fail() || !input.empty());
 }
 
-bool isNumber(const char c)
+bool	isNumber(const char c)
 {
 	return (isdigit(static_cast<const char>(c)) != 0);
 }
@@ -49,12 +43,12 @@ bool	PhoneBook::promptForField(const string& fieldName, t_Field field, f_isCondi
 		if (input.empty())
 		{
 			cerr << fieldName << " cannot be empty. Please try again." << endl;
-			continue;
+			continue ;
 		}
 		if (isInputValid(input))
 		{
 			if (!isCondition)
-				break;
+				break ;
 			if (isString(input, isCondition))
 				break ;
 		}
@@ -85,6 +79,8 @@ void	PhoneBook::addContact(void)
 {
 	if (tryCreateContact())
 	{
+		// test
+		// _new_contact.printContact();
 		_contacts[_count % MAX_CONTACT] = _new_contact;
 		increaseCount();
 		cout << "" << endl;

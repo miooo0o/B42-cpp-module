@@ -29,6 +29,7 @@ public:
 	bool	setField(t_Field field, const std::string& value);
 	bool	setIndex(int index);
 
+	void	printContact() const;
 private:
 	int		_index;
 	string	_firstName;

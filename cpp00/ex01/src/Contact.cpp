@@ -37,3 +37,13 @@ bool	Contact::setIndex(int index)
 	_index = index;
 	return (true);
 }
+
+void	Contact::printContact() const
+{
+	cout << "Index: " << _index << std::endl;
+	cout << "First Name: " << _firstName << std::endl;
+	cout << "Last Name: " << _lastName << std::endl;
+	cout << "Nickname: " << _nickname << std::endl;
+	cout << "Phone Number: " << _phoneNumber << std::endl;
+	cout << "Darkest Secret: " << _darkestSecret << std::endl;
+}
