@@ -8,12 +8,14 @@ RM			= rm
 NAME		=	phonebook
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
-#INCLUDE		=	-I ./backup/
+INCLUDE		=	-I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	src/main.cpp src/Contact/Contact.cpp src/PhoneBook/PhoneBook.cpp
-OBJS        = $(addprefix $(OBJS_DIR), $(notdir $(SRCS:.cpp=.o)))
+SRCS		=	$(SRCS_DIR)main.cpp \
+				$(SRCS_DIR)Contact/Contact.cpp \
+				$(SRCS_DIR)PhoneBook/PhoneBook.cpp
+OBJS        =	$(addprefix $(OBJS_DIR), $(notdir $(SRCS:.cpp=.o)))
 
 
 # Main Command

@@ -26,8 +26,8 @@ public:
 	Contact();
 	~Contact();
 
-	bool	Contact::setField(t_Field field, const std::string& value);
-	bool	Contact::setIndex(int index);
+	bool	setField(t_Field field, const std::string& value);
+	bool	setIndex(int index);
 
 private:
 	int		_index;

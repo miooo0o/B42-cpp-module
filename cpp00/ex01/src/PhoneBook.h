@@ -1,8 +1,8 @@
-
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
 #include "Contact.h"
+#include <functional>
 
 /// Contacts as a list of 4 columns: index, first name, last name and nickname
 /// Each column must be 10 characters wide
@@ -12,6 +12,9 @@
 /// Otherwise, display the contact information, one field per line
 
 using namespace std;
+
+typedef bool (*f_isString)(const string&);
+typedef bool (*f_isCondition)(const char c);
 
 /// ADD: save a new contact
 /// SEARCH: display a specific contact
@@ -24,7 +27,8 @@ public:
 	void	addContact(void);
 	void	searchContact(void);
 	bool	tryCreateContact();
-	bool	promptForField(const std::string& fieldName, e_Field field);
+	// bool	promptForField(const std::string& fieldName, e_Field field);
+	bool	promptForField(const string& fieldName, t_Field field, f_isCondition isCondition);
 	void	increaseCount(void);
 
 private:
