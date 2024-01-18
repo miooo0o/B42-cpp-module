@@ -8,7 +8,7 @@ using namespace std;
 
 /// @macro
 # define MAX_CONTACT	8
-
+# define FIELD_WIDTH	10
 /// @enum
 typedef enum e_Field {
 	FirstName,

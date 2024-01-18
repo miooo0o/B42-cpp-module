@@ -88,3 +88,8 @@ void	PhoneBook::addContact(void)
 	else
 		cerr << "Contact creation failed." << endl;
 }
+
+void	()
+{
+	cout << "-------------------- CONTACTS --------------------" << endl;
+}
