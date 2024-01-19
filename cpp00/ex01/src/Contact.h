@@ -1,8 +1,9 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
-#include <iostream>
-#include <string>
+# include <iostream>
+# include <string>
+# include <iomanip>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ typedef enum e_Field {
 	InvalidField
 }	t_Field;
 
+
 /// It can store a maximum of 8 contacts.
 /// If the user tries to add a 9th contact, replace the oldest one by the new one.
 class Contact {
@@ -29,7 +31,9 @@ public:
 	bool	setField(t_Field field, const std::string& value);
 	bool	setIndex(int index);
 
-	void	printContact() const;
+	void	displayOverview(void) const;
+	void	displayTarget(void) const;
+
 private:
 	int		_index;
 	string	_firstName;
@@ -37,6 +41,9 @@ private:
 	string	_nickname;
 	string	_phoneNumber;
 	string	_darkestSecret;
+	
+	
+	string	abbreviated(const string& field) const;
 };
 
 

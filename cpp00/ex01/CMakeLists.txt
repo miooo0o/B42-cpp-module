@@ -9,6 +9,7 @@ set(SOURCES
 		src/PhoneBook.cpp
 		src/PhoneBook.h
 		src/Contact.h
+		src/utils.cpp
 )
 
 # Create the executable

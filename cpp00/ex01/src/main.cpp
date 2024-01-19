@@ -2,7 +2,7 @@
 
 void	showPrompt(void)
 {
-	cout << "enter one of three options: ADD, SEARCH, EXIT"<< endl;
+	cout << "> enter one of three options: ADD, SEARCH, EXIT"<< endl;
 }
 
 int	main()
@@ -14,13 +14,13 @@ int	main()
 	{
 		if (cmd == "ADD")
 			phonebook.addContact();
-		// else if (cmd == "SEARCH")
-		// 	phonebook.searchContact();
+		else if (cmd == "SEARCH")
+			phonebook.searchContact();
 		else if (cmd == "EXIT")
 			break ;
 		else
-			cerr << "warning! unrecognized command :" << cmd << endl;
+			cerr << "--- warning! unrecognized command :" << cmd << endl;
 	}
-	cout << "EXIT" << std::endl;
+	cout << "--- exit the program" << std::endl;
 	return (EXIT_SUCCESS);
 }

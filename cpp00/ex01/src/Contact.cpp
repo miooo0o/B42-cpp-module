@@ -1,7 +1,5 @@
 #include "Contact.h"
 
-#include <iomanip>
-
 // init contact
 Contact::Contact() : _index(0) {}
 Contact::~Contact() {}
@@ -40,19 +38,29 @@ bool	Contact::setIndex(int index)
 	return (true);
 }
 
-
-// |    |                  |                   |                     |
 string	Contact::abbreviated(const string& field) const
 {
 	if (field.length() <= FIELD_WIDTH)
 		return (field);
 	else
-		return (field.substr(0, FIELD_WIDTH - 3) + "...");
+		return (field.substr(0, FIELD_WIDTH - 1) + ".");
 }
 
-
-void	Contact::displayEachContact(const string& fieldName, int index)
+void	Contact::displayOverview(void) const
 {
+	cout << "|" << setw(4) << left << _index + 1 << "|"
+		<< setw(FIELD_WIDTH) << left << abbreviated(_firstName) << "|"
+		<< setw(FIELD_WIDTH) << left << abbreviated(_lastName) << "|"
+		<< setw(FIELD_WIDTH) << left << abbreviated(_nickname) << "|"
+		<< endl << endl;
+}
 
-
+void	Contact::displayTarget(void) const
+{
+	cout << endl << "Index [ " << _index + 1 << " ]" << endl;
+	cout << "First name: " << _firstName << endl;
+	cout << "Last name: " << _lastName << endl;
+	cout << "Nickname: " << _nickname << endl;
+	cout << "Phone number: " << _phoneNumber << endl;
+	cout << "Darkest secret: " << _darkestSecret << endl << endl;
 }

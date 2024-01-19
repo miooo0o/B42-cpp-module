@@ -5,59 +5,28 @@
 PhoneBook::PhoneBook()	{ _count = 0; }
 PhoneBook::~PhoneBook()	{}
 
-bool	ignoreWhitespace()
-{
-	cin.clear();
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	return (true);
-}
-
-bool	isInputValid(const std::string& input)
-{
-	return (!cin.fail() || !input.empty());
-}
-
-bool	isNumber(const char c)
-{
-	return (isdigit(static_cast<const char>(c)) != 0);
-}
-
-bool	isString(const string& s, f_isCondition isCondition)
-{
-	for (char c : s)
-	{
-		if (!isCondition(static_cast<const char>(c)))
-			return (false);
-	}
-	return (true);
-}
-
 bool	PhoneBook::promptForField(const string& fieldName, t_Field field, f_isCondition isCondition)
 {
 	string		input;
 
 	while (true)
 	{
-		cout << "Enter " << fieldName << ": ";
+		cout << "> enter " << fieldName << ": ";
 		getline(cin, input);
 		if (input.empty())
 		{
-			cerr << fieldName << " cannot be empty. Please try again." << endl;
+			cerr << "--- "<< fieldName << "cannot be empty. Please try again." << endl << endl;
 			continue ;
 		}
-		if (isInputValid(input))
-		{
-			if (!isCondition)
-				break ;
-			if (isString(input, isCondition))
-				break ;
-		}
-		cerr << "Invalid " << fieldName << ". Please try again." << endl;
-		// ignoreWhitespace();
+		if (!isCondition)
+			break ;
+		if (StringSatisfied(input, isCondition))
+			break ;
+		cerr << "--- invalid " << fieldName << ". please try again." << endl << endl;
 	}
 	if (!_new_contact.setField(field, input))
 	{
-		cerr << "Failed to set field. Please try again." << endl;
+		cerr << "--- failed to set field. Please try again." << endl << endl;
 		return (false);
 	}
 	return (true);
@@ -69,7 +38,7 @@ bool	PhoneBook::tryCreateContact(void)
 			promptForField("First name", FirstName, nullptr) &&
 			promptForField("Last name", LastName, nullptr) &&
 			promptForField("Nickname", NickName, nullptr) &&
-			promptForField("Phone number", PhoneNumber, isNumber) &&
+			promptForField("Phone number", PhoneNumber, isPhoneNumber) &&
 			promptForField("Darkest secret", DarkestSecret, nullptr));
 }
 
@@ -79,17 +48,58 @@ void	PhoneBook::addContact(void)
 {
 	if (tryCreateContact())
 	{
-		// test
-		// _new_contact.printContact();
 		_contacts[_count % MAX_CONTACT] = _new_contact;
 		increaseCount();
-		cout << "" << endl;
+		cout << "--- added to PhoneBook." << endl << endl;
 	}
 	else
-		cerr << "Contact creation failed." << endl;
+		cerr << "--- contact creation failed. return to previous." << endl << endl;
 }
 
-void	()
+int	PhoneBook::getTargetIndex(void)
 {
-	cout << "-------------------- CONTACTS --------------------" << endl;
+	string		input;
+	int			index;
+
+	while (true)
+	{
+		cout << "> enter the index of the contact you want to view: ";
+		getline(cin, input);
+		if (input.empty())
+		{
+			cerr << "--- cannot be empty. please try again." << endl << endl;
+			continue ;
+		}
+		if (StringSatisfied(input, isNumber))
+		{
+			index = stoi(input);
+			if (index >= 1 && index <= MAX_CONTACT && index < _count + 1)
+				return (index);
+			else
+			{
+				cerr << "--- the index [ " << input << " ] you entered could not exited." << endl;
+				cerr << "--- currently existing indexes: " << _count << " / 8" << endl;
+				cerr << "--- return to previous." << endl << endl;
+				return (false);
+			}
+		}
+		cerr << "--- index can be a number only. please try again." << endl << endl;
+	}
+}
+
+void	PhoneBook::searchContact(void)
+{
+	int	inputIndex;
+	
+	while (true)
+	{
+		cout << "--------------- SEARCH ---------------" << endl;
+		for (int i = 0; i < _count && i < MAX_CONTACT;  ++i)
+			_contacts[i].displayOverview();
+		inputIndex = getTargetIndex() - 1;
+		if (inputIndex < 0)
+			continue ;
+		_contacts[inputIndex].displayTarget();
+		break ;
+	}
 }

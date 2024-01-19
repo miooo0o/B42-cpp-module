@@ -13,8 +13,10 @@ INCLUDE		=	-I./src
 
 # sources
 SRCS		=	$(SRCS_DIR)main.cpp \
-				$(SRCS_DIR)Contact/Contact.cpp \
-				$(SRCS_DIR)PhoneBook/PhoneBook.cpp
+				$(SRCS_DIR)Contact.cpp \
+				$(SRCS_DIR)PhoneBook.cpp \
+				$(SRCS_DIR)utils.cpp
+
 OBJS        =	$(addprefix $(OBJS_DIR), $(notdir $(SRCS:.cpp=.o)))
 
 
