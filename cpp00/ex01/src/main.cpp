@@ -19,7 +19,7 @@ int	main()
 		else if (cmd == "EXIT")
 			break ;
 		else
-			cerr << "--- warning! unrecognized command :" << cmd << endl;
+			cerr << "--- warning! unrecognized command: " << cmd << endl;
 	}
 	cout << "--- exit the program" << std::endl;
 	return (EXIT_SUCCESS);
