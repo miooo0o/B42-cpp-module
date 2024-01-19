@@ -21,6 +21,6 @@ int	main()
 		else
 			cerr << "--- warning! unrecognized command: " << cmd << endl;
 	}
-	cout << "--- exit the program" << std::endl;
+	cout << "--- exit the program." << std::endl;
 	return (EXIT_SUCCESS);
 }
