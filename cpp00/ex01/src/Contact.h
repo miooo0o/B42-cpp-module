@@ -26,10 +26,13 @@ public:
 	Contact();
 	~Contact();
 
-	bool	setField(t_Field field, const std::string& value);
+	bool	setField(t_Field field, const string& value);
 	bool	setIndex(int index);
 
 	void	printContact() const;
+	string	abbreviated(const string& field) const;
+	void	displayEachContact(const string& fieldName, int index) const;
+
 private:
 	int		_index;
 	string	_firstName;

@@ -7,25 +7,25 @@ Contact::Contact() : _index(0) {}
 Contact::~Contact() {}
 
 
-bool	Contact::setField(t_Field field, const std::string& value)
+bool	Contact::setField(t_Field field, const string& value)
 {
 	switch (field)
 	{
 		case FirstName:
 			_firstName = value;
-		break;
+			break;
 		case LastName:
 			_lastName = value;
-		break;
+			break;
 		case NickName:
 			_nickname = value;
-		break;
+			break;
 		case PhoneNumber:
 			_phoneNumber = value;
-		break;
+			break;
 		case DarkestSecret:
 			_darkestSecret = value;
-		break;
+			break;
 		default:
 			return (false);
 	}
@@ -50,8 +50,7 @@ string	Contact::abbreviated(const string& field) const
 		return (field.substr(0, FIELD_WIDTH - 3) + "...");
 }
 
-
-void	Contact::displayEachContact(const string& fieldName, int index)
+void	Contact::displayEachContact(const string& fieldName, int index) const
 {
 
 
