@@ -1,5 +1,10 @@
 #include "Account.hpp"
 
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
@@ -30,8 +35,28 @@ int Account::getNbAccounts( void )
 	return (_nbAccounts);
 }
 
+int	Account::getTotalAmount( void )
+{
+	return (_totalAmount);
+}
+int	Account::getNbDeposits( void )
+{
+	
+	return (_totalNbDeposits);
+}
 
-static int	getTotalAmount( void );
-static int	getNbDeposits( void );
-static int	getNbWithdrawals( void );
-static void	displayAccountsInfos( void );
+int	Account::getNbWithdrawals( void )
+{
+	return (_totalNbWithdrawals);
+}
+
+
+void	Account::_displayTimestamp( void )
+{
+
+}
+
+void	Account::displayAccountsInfos( void )
+{
+	char    timeBuffer[20];
+}
