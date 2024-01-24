@@ -10,7 +10,6 @@ project(Account)
 # Add all your source files
 set(SOURCES
 	src/Account.cpp
-	src/Account.hpp
 	src/tests.cpp
 )
 

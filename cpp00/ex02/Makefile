@@ -1,25 +1,25 @@
 # Alias
-CXX			= c++
-VERSION		= -std=c++98
-CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
-RM			= rm
+CXX			=	c++
+VERSION		=	-std=c++98
+CXXFLAGS	=	-Wall -Werror -Wextra $(VERSION)
+RM			=	rm
 
 # standard
-NAME		=	phonebook
+NAME		=	dreamjob
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
 INCLUDE		=	-I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)Account.cpp \
-				$(SRCS_DIR)tests.cpp
+SRCS		=	$(SRCS_DIR)tests.cpp \
+				$(SRCS_DIR)Account.cpp
 
 OBJS        =	$(addprefix $(OBJS_DIR), $(notdir $(SRCS:.cpp=.o)))
 
 
 # Main Command
-all: $(NAME)
+all:		$(NAME)
 
 $(NAME):	$(OBJS)
 	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)

@@ -48,10 +48,10 @@ string	Contact::abbreviated(const string& field) const
 
 void	Contact::displayOverview(void) const
 {
-	cout << "|" << setw(4) << left << _index + 1 << "|"
-		<< setw(FIELD_WIDTH) << left << abbreviated(_firstName) << "|"
-		<< setw(FIELD_WIDTH) << left << abbreviated(_lastName) << "|"
-		<< setw(FIELD_WIDTH) << left << abbreviated(_nickname) << "|"
+	cout << "|" << std::setw(4) << std::left << _index + 1 << "|"
+		<< std::setw(FIELD_WIDTH) << std::left << abbreviated(_firstName) << "|"
+		<< std::setw(FIELD_WIDTH) << std::left << abbreviated(_lastName) << "|"
+		<< std::setw(FIELD_WIDTH) << std::left << abbreviated(_nickname) << "|"
 		<< endl << endl;
 }
 

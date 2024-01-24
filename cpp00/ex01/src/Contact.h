@@ -5,7 +5,11 @@
 # include <string>
 # include <iomanip>
 
-using namespace std;
+using	std::cout;
+using	std::endl;
+using	std::string;
+using	std::cerr;
+using	std::cin;
 
 /// @macro
 # define MAX_CONTACT	8

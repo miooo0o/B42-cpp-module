@@ -14,8 +14,6 @@
 /// If the index is out of range or wrong, define a relevant behavior.
 /// Otherwise, display the contact information, one field per line
 
-using namespace std;
-
 typedef bool (*f_isCondition)(const char c);
 
 /// ADD: save a new contact

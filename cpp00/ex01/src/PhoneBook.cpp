@@ -94,6 +94,13 @@ void	PhoneBook::searchContact(void)
 	while (true)
 	{
 		// add condition : if there is no index
+		if (_count == 0)
+		{
+			cout << "--------------- SEARCH ---------------" << endl;
+			cout << "    your phonebook is empty." << endl;
+			cout << "--- return to previous." << endl;
+			break;
+		}
 		cout << "--------------- SEARCH ---------------" << endl;
 		for (int i = 0; i < _count && i < MAX_CONTACT;  ++i)
 			_contacts[i].displayOverview();
