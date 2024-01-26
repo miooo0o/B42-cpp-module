@@ -47,7 +47,7 @@ private:
 	string	_darkestSecret;
 	
 	
-	string	abbreviated(const string& field) const;
+	string	_abbreviated(const string& field) const;
 };
 
 

@@ -5,7 +5,7 @@
 PhoneBook::PhoneBook()	{ _count = 0; }
 PhoneBook::~PhoneBook()	{}
 
-bool	PhoneBook::promptForField(const string& fieldName, t_Field field, f_isCondition isCondition)
+bool	PhoneBook::_promptForField(const string& fieldName, t_Field field, f_isCondition isSatisfiedAll)
 {
 	string		input;
 
@@ -18,9 +18,9 @@ bool	PhoneBook::promptForField(const string& fieldName, t_Field field, f_isCondi
 			cerr << "--- "<< fieldName << "cannot be empty. Please try again." << endl << endl;
 			continue ;
 		}
-		if (!isCondition)
+		if (!isSatisfiedAll)
 			break ;
-		if (StringSatisfied(input, isCondition))
+		if (StringSatisfied(input, isSatisfiedAll))
 			break ;
 		cerr << "--- invalid " << fieldName << ". please try again." << endl << endl;
 	}
@@ -32,31 +32,51 @@ bool	PhoneBook::promptForField(const string& fieldName, t_Field field, f_isCondi
 	return (true);
 }
 
-bool	PhoneBook::tryCreateContact(void)
+bool	PhoneBook::_tryCreateContact(void)
 {
 	return (_new_contact.setIndex(_count % MAX_CONTACT) &&
-			promptForField("First name", FirstName, nullptr) &&
-			promptForField("Last name", LastName, nullptr) &&
-			promptForField("Nickname", NickName, nullptr) &&
-			promptForField("Phone number", PhoneNumber, isPhoneNumber) &&
-			promptForField("Darkest secret", DarkestSecret, nullptr));
+			_promptForField("First name", FirstName, nullptr) &&
+			_promptForField("Last name", LastName, nullptr) &&
+			_promptForField("Nickname", NickName, nullptr) &&
+			_promptForField("Phone number", PhoneNumber, isPhoneNumber) &&
+			_promptForField("Darkest secret", DarkestSecret, nullptr));
 }
 
-void	PhoneBook::increaseCount(void) { _count += 1; }
+void	PhoneBook::_increaseCount(void) { _count += 1; }
 
 void	PhoneBook::addContact(void)
 {
-	if (tryCreateContact())
+	if (_tryCreateContact())
 	{
 		_contacts[_count % MAX_CONTACT] = _new_contact;
-		increaseCount();
+		_increaseCount();
 		cout << "--- added to PhoneBook." << endl << endl;
 	}
 	else
 		cerr << "--- contact creation failed. return to previous." << endl << endl;
 }
 
-int	PhoneBook::getTargetIndex(void)
+bool	PhoneBook::_isValidIndex(string& input, int& index)
+{
+	std::istringstream	iss(input);
+
+	if (!(iss >> index))
+	{
+		cerr << "--- the index [ " << input << " ] you entered is too large. please try again." << endl << endl;
+		return (false);
+	}
+	if (index >= 1 && index <= MAX_CONTACT && index < _count + 1)
+		return (true);
+	else
+	{
+		cerr << "--- the index [ " << input << " ] you entered could not exited." << endl;
+		cerr << "--- currently existing indexes: " << _count << " / 8" << endl;
+		cerr << "--- return to previous." << endl << endl;
+		return (false);
+	}
+}
+
+int	PhoneBook::_getTargetIndex(void)
 {
 	string		input;
 	int			index;
@@ -72,16 +92,9 @@ int	PhoneBook::getTargetIndex(void)
 		}
 		if (StringSatisfied(input, isNumber))
 		{
-			index = stoi(input);
-			if (index >= 1 && index <= MAX_CONTACT && index < _count + 1)
+			if (_isValidIndex(input, index))
 				return (index);
-			else
-			{
-				cerr << "--- the index [ " << input << " ] you entered could not exited." << endl;
-				cerr << "--- currently existing indexes: " << _count << " / 8" << endl;
-				cerr << "--- return to previous." << endl << endl;
-				return (false);
-			}
+			continue ;
 		}
 		cerr << "--- index can be a number only. please try again." << endl << endl;
 	}
@@ -99,12 +112,14 @@ void	PhoneBook::searchContact(void)
 			cout << "--------------- SEARCH ---------------" << endl;
 			cout << "    your phonebook is empty." << endl;
 			cout << "--- return to previous." << endl;
+			cout << "--------------------------------------" << endl;
 			break;
 		}
 		cout << "--------------- SEARCH ---------------" << endl;
 		for (int i = 0; i < _count && i < MAX_CONTACT;  ++i)
 			_contacts[i].displayOverview();
-		inputIndex = getTargetIndex() - 1;
+		cout << "--------------------------------------" << endl;
+		inputIndex = _getTargetIndex() - 1;
 		if (inputIndex < 0)
 			continue ;
 		_contacts[inputIndex].displayTarget();

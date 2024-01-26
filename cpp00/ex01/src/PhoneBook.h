@@ -37,10 +37,11 @@ private:
 	Contact	_new_contact;
 	Contact	_contacts[MAX_CONTACT];
 
-	bool	tryCreateContact();
-	bool	promptForField(const string& fieldName, t_Field field, f_isCondition isSatisfiedAll);
-	void	increaseCount(void);
-	int		getTargetIndex(void);
+	bool	_tryCreateContact();
+	bool	_promptForField(const string& fieldName, t_Field field, f_isCondition isSatisfiedAll);
+	void	_increaseCount(void);
+	int		_getTargetIndex(void);
+	bool	_isValidIndex(string& input, int& index);
 };
 
 #endif

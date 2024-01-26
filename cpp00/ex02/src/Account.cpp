@@ -33,7 +33,7 @@ Account::Account(int initial_deposit)
 		 << "amount:" <<  _amount << ";"
 		 << "created" << endl;
 }
-//[19920104_091532] index:7;amount:8942;closed
+
 Account::~Account( void )
 {
 	_displayTimestamp();
