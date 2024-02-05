@@ -5,15 +5,16 @@ CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
 RM			= rm
 
 # standard
-NAME		=	BrainzzZ
+NAME		=	megaphone
 OBJS_DIR	=	./obj/
-SRCS_DIR	=	./
+SRCS_DIR	=	./src/
 INCLUDE		=	-I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)Zombie/zombie.cpp
-OBJS		=	$(addprefix $(OBJS_DIR), $(notdir $(SRCS:.cpp=.o)))
+SRCS		=	$(SRCS_DIR)megaphone.cpp
+
+OBJS        =	$(addprefix $(OBJS_DIR), $(notdir $(SRCS:.cpp=.o)))
 
 
 # Main Command

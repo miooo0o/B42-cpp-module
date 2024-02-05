@@ -19,6 +19,7 @@ Account::Account()
 		  _nbWithdrawals(0)
 {
 	++_nbAccounts;
+	_accountIndex = _nbAccounts - 1;
 }
 
 Account::Account(int initial_deposit)
@@ -28,6 +29,8 @@ Account::Account(int initial_deposit)
 		  _nbWithdrawals(0)
 {
 	_totalAmount += initial_deposit;
+	++_nbAccounts;
+	_accountIndex = _nbAccounts - 1;
 	_displayTimestamp();
 	cout << "index:" <<  _accountIndex << ";"
 		 << "amount:" <<  _amount << ";"
@@ -40,6 +43,7 @@ Account::~Account( void )
 	cout << "index:" <<  _accountIndex << ";"
 		 << "amount:" <<  _amount << ";"
 		 << "closed" << endl;
+	--_nbAccounts;
 }
 
 int Account::getNbAccounts( void )
