@@ -5,19 +5,11 @@ macro(set_project_name NAME)
 	project(${PROJECT_NAME})
 endmacro()
 
-project(BrainzzZ)
+project(heybrain)
 
 # Add all your source files
 set(SOURCES
 		src/main.cpp
-		src/Zombie/Zombie.cpp
-		src/Zombie/Zombie.h
-		src/Zombie/randomChump.cpp
-		src/Zombie/newZombie.cpp
-		../ex01/src/main.cpp
-		../ex01/src/Zombie/Zombie.cpp
-		../ex01/src/zombieHorde.cpp
-		../ex02/src/main.cpp
 )
 
 # Create the executable

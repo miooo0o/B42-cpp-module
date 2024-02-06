@@ -21,12 +21,14 @@ public:
 	~Zombie();
 	
 	void	announce(void);
-	
+	void	named(string name);
+
 private:
 	string _name;
 };
 
 Zombie*	newZombie(string name);
 void    randomChump(string name);
+Zombie*	zombieHorde(int N, string name);
 
 #endif
