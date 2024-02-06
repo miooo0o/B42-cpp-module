@@ -5,12 +5,19 @@ macro(set_project_name NAME)
 	project(${PROJECT_NAME})
 endmacro()
 
-project(heybrain)
+project(necessary_violence)
 
 # Add all your source files
 set(SOURCES
 		src/main.cpp
-		../ex03/src/main.cpp
+		src/HumanA/HumanA.cpp
+		src/HumanA/HumanA.h
+
+		src/HumanB/HumanB.cpp
+		src/HumanB/HumanB.h
+		src/Weapon/Weapon.h
+		include/macro.h
+
 )
 
 # Create the executable
