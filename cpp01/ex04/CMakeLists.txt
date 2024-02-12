@@ -10,6 +10,8 @@ project(except_replace)
 # Add all your source files
 set(SOURCES
 		src/main.cpp
+		src/Replace/Replace.h
+		src/Replace/Replace.cpp
 )
 
 # Create the executable

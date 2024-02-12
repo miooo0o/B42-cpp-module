@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:29:09 by minakim           #+#    #+#             */
-/*   Updated: 2024/02/12 13:30:11 by minakim          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:25:33 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ using	std::string;
 using	std::cerr;
 using	std::cin;
 
+/// error
+#include <errno.h>
+# define SYSERROR()  errno
+
 /* ************************************************************************** */
 
 /// for the target project
@@ -38,5 +42,6 @@ using	std::cin;
 
 /// project using
 using	std::ifstream;
+using	std::ofstream;
 
 #endif
