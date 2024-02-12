@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:29:09 by minakim           #+#    #+#             */
-/*   Updated: 2024/02/12 14:25:33 by minakim          ###   ########.fr       */
+/*   Updated: 2024/02/12 17:01:34 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ using	std::cin;
 /// error
 #include <errno.h>
 # define SYSERROR()  errno
+
+/// valid
+# define INVALID	1
+# define VALID		0
 
 /* ************************************************************************** */
 
