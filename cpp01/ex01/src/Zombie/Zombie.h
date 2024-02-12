@@ -16,9 +16,9 @@ using	std::cin;
 
 class Zombie {
 public:
-	Zombie();
+	Zombie(void);
 	Zombie(string);
-	~Zombie();
+	~Zombie(void);
 	
 	void	announce(void);
 	void	named(string name);

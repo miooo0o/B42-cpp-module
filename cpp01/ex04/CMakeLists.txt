@@ -5,19 +5,11 @@ macro(set_project_name NAME)
 	project(${PROJECT_NAME})
 endmacro()
 
-project(necessary_violence)
+project(except_replace)
 
 # Add all your source files
 set(SOURCES
 		src/main.cpp
-		src/HumanA/HumanA.cpp
-		src/HumanA/HumanA.h
-
-		src/HumanB/HumanB.cpp
-		src/HumanB/HumanB.h
-		src/Weapon/Weapon.h
-		include/macro.h
-		src/Weapon/Weapon.cpp
 )
 
 # Create the executable

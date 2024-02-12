@@ -1,18 +1,18 @@
-
 #ifndef HUMANA_H
 #define HUMANA_H
 
-#include "macro.h"
+#include "Weapon/Weapon.h"
 
 class HumanA {
 public:
-	HumanA();
-	~HumanA();
+	HumanA(string name, Weapon weapon);
+	~HumanA(void);
+	
+	void	attack(void);
 private:
 	string	_name;
-	sting	_weapon;
+	Weapon	_weapon;
 	bool	_is_armed;
 };
-
 
 #endif

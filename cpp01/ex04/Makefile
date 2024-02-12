@@ -5,17 +5,14 @@ CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
 RM			= rm
 
 # standard
-NAME		=	necessary_violence
+NAME		=	except_replace
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
-INCLUDE		=	-I./src -I./src/HumanA -I./src/HumanB -I./src/Weapon -I./include
+INCLUDE		=	-I./include
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)main.cpp \
-				$(SRCS_DIR)HumanA/HumanA.cpp \
-				$(SRCS_DIR)HumanB/HumanB.cpp \
-				$(SRCS_DIR)Weapon/Weapon.cpp
+SRCS		=	$(SRCS_DIR)main.cpp
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 
