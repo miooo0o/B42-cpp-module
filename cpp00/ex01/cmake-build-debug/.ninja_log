@@ -1,0 +1,6 @@
+# ninja log v5
+0	454	1705852626476350372	CMakeFiles/phonebook.dir/src/utils.cpp.o	1adabd827119c143
+491	531	1705852626552350658	phonebook	5eedc367b41c6ea7
+0	471	1705852626492350432	CMakeFiles/phonebook.dir/src/main.cpp.o	b5eaece83e6afed3
+0	354	1705852626376349996	CMakeFiles/phonebook.dir/src/Contact.cpp.o	da64812cbabffcda
+0	491	1705852626512350507	CMakeFiles/phonebook.dir/src/PhoneBook.cpp.o	af99170677def984
