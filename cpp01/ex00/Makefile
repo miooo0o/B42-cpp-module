@@ -6,6 +6,8 @@ RM			= rm
 
 # standard
 NAME		=	BrainzzZ
+TARGET		=	./$(NAME)
+
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
 INCLUDE		=	-I./src
@@ -23,6 +25,8 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "Makefile: $(TARGET) compiled."
+
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.cpp
 	@mkdir -p $(@D)

@@ -6,6 +6,7 @@ RM			= rm
 
 # standard
 NAME		=	necessary_violence
+TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
 INCLUDE		=	-I./src -I./src/HumanA -I./src/HumanB -I./src/Weapon -I./include
@@ -24,6 +25,7 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 	@$(CXX) $(INCLUDE) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "Makefile: $(TARGET) compiled."
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.cpp
 	@mkdir -p $(@D)

@@ -6,13 +6,15 @@ RM			= rm
 
 # standard
 NAME		=	except_replace
+TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
-INCLUDE		=	-I./include
+INCLUDE		=	-I./include -I.$(SRCS_DIR)Raplace
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)main.cpp
+SRCS		=	$(SRCS_DIR)main.cpp \
+				$(SRCS_DIR)Replace/Replace.cpp
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 
@@ -21,10 +23,11 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 	@$(CXX) $(INCLUDE) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "Makefile: $(TARGET) compiled."
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.cpp
 	@mkdir -p $(@D)
-	@echo "Compiling $<"
+	@#echo "compiling $<"
 	@$(CXX) $(INCLUDE) -c $< -o $@
 
 clean:

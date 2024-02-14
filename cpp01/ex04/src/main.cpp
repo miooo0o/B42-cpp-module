@@ -1,11 +1,5 @@
 #include "Replace/Replace.h"
 
-int	error_openfile(void)
-{
-	cerr << "error: fail to open file: " << SYSERROR() <<endl;
-	return (EXIT_FAILURE);
-}
-
 int	error_args(void)
 {
 	cerr << "error: incorrect argument(s): "
@@ -18,21 +12,32 @@ bool	args_check(int ac, char **av)
 {
 	if (ac != 4)
 		return (false);
-	if (string(av[2]).empty() || string(av[2]).size() <= 0)
+	if (string(av[2]).empty())
 		return (false);
-	if (string(av[3]).empty() || string(av[3]).size() <= 0)
+	if (string(av[3]).empty())
 		return (false);
 	return (true);
 }
 
-// TODO: toooo c style.... think/research more
 int	main(int ac, char **av)
 {
 	string	filename;
-	if (args_check(ac, av))
+	if (!args_check(ac, av))
 		return (error_args());
-	Replace	res = Replace(av[1]);
-	if (res.do_replace(av[2], av[3]) == INVALID)
+	try
+	{
+		Replace	res = Replace(av[1]);
+		if (res.do_replace(av[2], av[3]) != VALID)
+			return (EXIT_FAILURE);
+		if (!res.is_found())
+			cout << "except_replace: no matching strings were found." << endl;
+		else
+			cout << "except_replace: replaced all of the target strings with new ones." << endl;
+	}
+	catch (const std::exception &e)
+	{
+		cerr << e.what() << endl;
 		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
