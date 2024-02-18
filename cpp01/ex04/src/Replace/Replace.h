@@ -27,9 +27,9 @@ public:
 
 private:
 	string const	_infile_name;
-	string const	_outfil_ename;
-	ifstream		_in;
-	ofstream		_out;
+	string const	_outfile_name;
+	ifstream		_infile;
+	ofstream		_outfile;
 	bool			_is_found;
 	
 	static void	_error_fileopen(string const &msg, string const &filename);

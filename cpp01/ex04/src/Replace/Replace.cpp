@@ -3,24 +3,24 @@
 /// @brief	constructor functions
 /// @note	initialization list always with `filename`
 Replace::Replace(string filename)
-: _infile_name(filename), _outfil_ename(get_outfile_name(_infile_name))
+: _infile_name(filename), _outfile_name(get_outfile_name(_infile_name))
 {
 	_is_found = false;
-	_in.open(_infile_name);
-	if (!_in.is_open())
+	_infile.open(_infile_name);
+	if (!_infile.is_open())
 		_error_fileopen("for reading", _infile_name);
-	_out.open(_outfil_ename);
-	if (!_out.is_open())
+	_outfile.open(_outfile_name);
+	if (!_outfile.is_open())
 	{
-		_in.close();
-		_error_fileopen("for writing", _outfil_ename);
+		_infile.close();
+		_error_fileopen("for writing", _outfile_name);
 	}
 }
 
 Replace::~Replace(void)
 {
-	_in.close();
-	_out.close();
+	_infile.close();
+	_outfile.close();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,14 +28,14 @@ Replace::~Replace(void)
 /// @brief	public
 int	Replace::do_replace(string const &s1, string const &s2)
 {
-	while (!_in.eof())
+	while (!_infile.eof())
 	{
 		string	tmp;
-		std::getline(_in, tmp);
+		std::getline(_infile, tmp);
 		try
 		{
 			_try_replace(tmp, s1, s2);
-			_out << tmp << endl;
+			_outfile << tmp << endl;
 		}
 		catch (std::exception &e)
 		{
