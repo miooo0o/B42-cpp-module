@@ -9,15 +9,16 @@ Fixed::Fixed(void) : _value(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
-
+///	@brief
 Fixed::Fixed(const int val) : _value(val << _fractional_bits)
 {
+	std::cout << "Int constructor called" << std::endl;
 
 }
 
-Fixed::Fixed(const float val)
+Fixed::Fixed(const float val) : _value()
 {
-
+	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &other)
