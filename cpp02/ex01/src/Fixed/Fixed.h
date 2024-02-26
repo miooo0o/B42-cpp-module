@@ -7,7 +7,7 @@
 
 /// @library
 # include <iostream>
-
+# include <math.h>
 /// @macro
 /// valid
 # define INVALID	1
@@ -33,5 +33,7 @@ private:
 	int 				_value;
 	static const int	_fractional_bits = 8;
 };
+
+std::ostream	&operator<<(std::ostream &out, const Fixed &target);
 
 #endif
