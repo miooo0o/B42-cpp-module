@@ -21,6 +21,11 @@ Point::Point(const float x, const float y)
 {
 }
 
+Point::Point(const Fixed x, const Fixed y)
+	: _x(Fixed(x)), _y(Fixed(y))
+{
+}
+
 /// @brief	destructor
 Point::~Point(void)
 {
@@ -37,9 +42,9 @@ Point &Point::operator=(const Point &other)
 	return (*this);
 }
 
-Point	Point::operator+(const Point &other) const
+Point	Point::operator-(const Point &other)
 {
-	return Point(getX() + other.getX());
+	return Point(_x - other._x, _y - other._y);
 }
 
 /// @brief	public
@@ -53,5 +58,8 @@ Fixed 	Point::getY(void) const
 	return (_y);
 }
 
-/// @brief	private
+///	@brief	BSP
+bool	bsp(Point const a, Point const b, Point const c, Point const point)
+{
 
+}
