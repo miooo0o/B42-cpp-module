@@ -14,6 +14,7 @@ set(SOURCES
 		src/Fixed/Fixed.cpp
 		src/Point/Point.h
 		src/Point/Point.cpp
+		src/bsp/bsp.cpp
 )
 
 # Create the executable

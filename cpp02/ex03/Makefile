@@ -9,12 +9,14 @@ NAME		=	fixed
 TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
-INCLUDE		=	-I./include -I.$(SRCS_DIR)Raplace
+INCLUDE		=	-I./src
 #LIBS_DIR	=	./lib/
 
 # sources
 SRCS		=	$(SRCS_DIR)main.cpp \
-				$(SRCS_DIR)Fixed/Fixed.cpp
+				$(SRCS_DIR)Fixed/Fixed.cpp \
+				$(SRCS_DIR)Point/Point.cpp \
+				$(SRCS_DIR)bsp/bsp.cpp
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

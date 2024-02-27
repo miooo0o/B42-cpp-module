@@ -9,7 +9,7 @@ NAME		=	name
 TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
-INCLUDE		=	-I./include -I.$(SRCS_DIR)Raplace
+INCLUDE		=	-I./include -I./src
 #LIBS_DIR	=	./lib/
 
 # sources
