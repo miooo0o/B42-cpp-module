@@ -36,8 +36,8 @@ Point &Point::operator=(const Point &other)
 {
 	if (this != &other)
 	{
-		_x = other.getX();
-		_y = other.getY();
+		(Fixed)_x = other.getX();
+		(Fixed)_y = other.getY();
 	}
 	return (*this);
 }
@@ -46,6 +46,12 @@ Point	Point::operator-(const Point &other) const
 {
 	return Point(_x - other._x, _y - other._y);
 }
+
+bool	Point::operator==(const Point &other) const
+{
+	return (this->_x == other._x && this->_y == other._y);
+}
+
 
 /// @brief	public
 Fixed 	Point::getX(void) const

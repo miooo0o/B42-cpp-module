@@ -32,20 +32,36 @@ int main(void)
 	Point	c(10.0f, 3.0f);
 	Point	point_inside(3.0f, 3.0f);
 	Point	point_outside(5.0f, 7.0f);
+	Point	point_vertex(10.0f, 3.0f);
+	Point	point_edge(6.0f, 6.0f);
 	
 	std::cout << "BSP Test: Triangle ABC" << std::endl << std::endl;
-	std::cout << "Test Case 1: Point Inside Triangle" << std::endl;
+	std::cout << "Test Case 1: Point inside triangle" << std::endl;
 	std::cout << "Point A(" << a.getX() << ", " << a.getY() << "), "
 				<< "B(" << b.getX() << ", " << b.getY() << "), "
 				<< "C(" << c.getX() << ", " << c.getY() << ")"
 				<< std::endl;
 	bsp_checker(a, b, c, point_inside);
 	std::cout << std::endl;
-	std::cout << "Test Case 2: Point Outside Triangle" << std::endl;
+	std::cout << "Test Case 2: Point outside triangle" << std::endl;
 	std::cout << "Point A(" << a.getX() << ", " << a.getY() << "), "
 				<< "B(" << b.getX() << ", " << b.getY() << "), "
 				<< "C(" << c.getX() << ", " << c.getY() << ")"
 				<< std::endl;
 	bsp_checker(a, b, c, point_outside);
+	std::cout << std::endl;
+	std::cout << "Test Case 3: Point on vertex of triangle" << std::endl;
+	std::cout << "Point A(" << a.getX() << ", " << a.getY() << "), "
+			  << "B(" << b.getX() << ", " << b.getY() << "), "
+			  << "C(" << c.getX() << ", " << c.getY() << ")"
+			  << std::endl;
+	bsp_checker(a, b, c, point_vertex);
+	std::cout << std::endl;
+	std::cout << "Test Case 4: Point on edge" << std::endl;
+	std::cout << "Point A(" << a.getX() << ", " << a.getY() << "), "
+			  << "B(" << b.getX() << ", " << b.getY() << "), "
+			  << "C(" << c.getX() << ", " << c.getY() << ")"
+			  << std::endl;
+	bsp_checker(a, b, c, point_edge);
 	return (EXIT_SUCCESS);
 }

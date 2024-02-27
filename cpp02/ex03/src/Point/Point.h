@@ -10,7 +10,8 @@
 
 ///	@enum
 typedef enum e_sign {
-	POSITIVE = 0,
+	ZERO = -1,
+	POSITIVE,
 	NEGATIVE
 } e_sign;
 
@@ -24,15 +25,16 @@ public:
 	~Point(void);
 	Point	&operator=(const Point &other);
 	Point	operator-(const Point &other) const;
-
+	bool	operator==(const Point &other) const;
+	
 	Fixed 	getX(void) const;
 	Fixed	getY(void) const;
 
 private:
-	Fixed	_x;
-	Fixed	_y;
+	Fixed const	_x;
+	Fixed const	_y;
 };
 
-bool	bsp(Point const& a, Point const& b, Point const& c, Point const& point);
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif

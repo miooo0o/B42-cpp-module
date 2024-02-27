@@ -17,5 +17,8 @@ int	main(void)
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::cout << Fixed::max( a, b ) << std::endl;
+	Fixed const c(Fixed(0.0f));
+	Fixed const d(Fixed(10.0f));
+	std::cout <<  d / c << std::endl;
 	return (EXIT_SUCCESS);
 }
