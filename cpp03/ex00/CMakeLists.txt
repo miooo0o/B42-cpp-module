@@ -5,18 +5,11 @@ macro(set_project_name NAME)
 	project(${PROJECT_NAME})
 endmacro()
 
-project(fixed)
+project(trap)
 
 # Add all your source files
 set(SOURCES
 		src/main.cpp
-		src/Fixed/Fixed.h
-		src/Fixed/Fixed.cpp
-		src/Point/Point.h
-		src/Point/Point.cpp
-		src/bsp/bsp.cpp
-		../../../../../../ClapTrap.h
-		../../../../../../ClapTrap.cpp
 )
 
 # Create the executable
