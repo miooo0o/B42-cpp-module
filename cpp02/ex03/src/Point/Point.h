@@ -10,9 +10,9 @@
 
 ///	@enum
 typedef enum e_sign {
-	ZERO = -1,
-	POSITIVE,
-	NEGATIVE
+	SIGN_ZERO = -1,
+	SIGN_POSITIVE,
+	SIGN_NEGATIVE
 } e_sign;
 
 /// @class Point
@@ -23,8 +23,11 @@ public:
 	Point(const float x, const float y);
 	Point(const Fixed x, const Fixed y);
 	~Point(void);
+
 	Point	&operator=(const Point &other);
 	Point	operator-(const Point &other) const;
+	Point	operator+(const Point &other) const;
+	Point	operator*(const Point &other) const;
 	bool	operator==(const Point &other) const;
 	
 	Fixed 	getX(void) const;

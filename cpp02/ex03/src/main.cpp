@@ -4,7 +4,11 @@
 
 #include "Point/Point.h"
 
-int	bsp_checker(Point const& a, Point const& b, Point const& c, Point const& point)
+//Point	find_edge_value(const Point v1, const Point v2, float t)
+//{
+//}
+
+int	bsp_checker(Point const a, Point const b, Point const c, Point const point)
 {
 	std::cout << "Point (" << point.getX() << ", " << point.getY() << ") is ";
 	if (bsp(a, b, c, point) && bsp(b, a, c, point) && \
@@ -28,12 +32,12 @@ int	bsp_checker(Point const& a, Point const& b, Point const& c, Point const& poi
 int main(void)
 {
 	Point	a(0.0f, 0.0f);
-	Point	b(2.0f, 5.0f);
-	Point	c(10.0f, 3.0f);
+	Point	b(0.0f, 6.0f);
+	Point	c(10.0f, 0.0f);
 	Point	point_inside(3.0f, 3.0f);
 	Point	point_outside(5.0f, 7.0f);
-	Point	point_vertex(10.0f, 3.0f);
-	Point	point_edge(6.0f, 6.0f);
+	Point	point_vertex(0.0f, 0.0f);
+	Point	point_edge(5.0f, 0.0f);
 	
 	std::cout << "BSP Test: Triangle ABC" << std::endl << std::endl;
 	std::cout << "Test Case 1: Point inside triangle" << std::endl;

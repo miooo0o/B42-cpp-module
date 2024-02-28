@@ -47,6 +47,17 @@ Point	Point::operator-(const Point &other) const
 	return Point(_x - other._x, _y - other._y);
 }
 
+Point	Point::operator+(const Point &other) const
+{
+	return Point(_x + other._x, _y + other._y);
+}
+
+Point	Point::operator*(const Point &other) const
+{
+	return Point(_x * other._x, _y * other._y);
+}
+
+
 bool	Point::operator==(const Point &other) const
 {
 	return (this->_x == other._x && this->_y == other._y);
