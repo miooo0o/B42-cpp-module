@@ -5,32 +5,35 @@
 
 ```Makefile 
 # Alias
-CXX		=	c++
-VERSION		=	-std=c++98
-CXXFLAGS	=	-Wall -Werror -Wextra $(VERSION)
-RM		=	rm
-	
-# standard
-NAME		=	megaphone
-OBJS_DIR	=	./obj/
-SRCS_DIR	=	./
-#INCLUDE	=	-I ./src/
-#LIBS_DIR	=	./lib/
-		
-# sources
-SRCS		=	megaphone.cpp
-OBJS		=	$(SRCS:$(SRCS_DIR)%.cpp=$(OBJS_DIR)%.o)
+CXX			= c++
+VERSION		= -std=c++98
+CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
+RM			= rm
 
+# standard
+NAME		=	name
+TARGET		=	./$(NAME)
+OBJS_DIR	=	./obj/
+SRCS_DIR	=	./src/
+INCLUDE		=	-I./include -I.$(SRCS_DIR)Raplace
+#LIBS_DIR	=	./lib/
+
+# sources
+SRCS		=	$(SRCS_DIR)main.cpp
+
+OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 
 # Main Command
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
+$(NAME):	$(OBJS)
+	@$(CXX) $(INCLUDE) $(CXXFLAGS) $(OBJS) -o $(NAME)
+	@echo "Makefile: $(TARGET) compiled."
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.cpp
 	@mkdir -p $(@D)
-	@$(CXX) -c $< -o $@
+	@#echo "compiling $<"
+	@$(CXX) $(INCLUDE) -c $< -o $@
 
 clean:
 	@$(RM) -rf $(OBJS_DIR)
@@ -38,13 +41,39 @@ clean:
 fclean:		clean
 	@$(RM) -f $(NAME)
 
-re:	fclean all
+re:			fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:		all clean fclean re
 
-dev:
-	@$(CXX) -g -o $(NAME) $(SRCS) $^
-#	@$(CXX) -g -o $(NAME) $(SRCS) $^ $(INCLUDE)
+```
+
+</details>
+
+
+### cmake
+<details>
+	<summary>Basic cmake Template for CPP Projects</summary>
+
+```cmake
+#cmake_minimum_required(VERSION 3.12)
+
+macro(set_project_name NAME)
+	set(PROJECT_NAME ${NAME})
+	project(${PROJECT_NAME})
+endmacro()
+
+project(name)
+
+# Add all your source files
+set(SOURCES
+		src/main.cpp
+)
+
+# Create the executable
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+# link target directories
+target_include_directories(${PROJECT_NAME} PRIVATE src include)
 ```
 
 </details>
