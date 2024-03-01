@@ -38,7 +38,8 @@ protected:
 	unsigned int	_energy_point;
 	unsigned int	_attack_damage;
 	
-	virtual void	announce(std::string msg);
+	// TODO: change to public, documentation Subclass
+	void	announce(std::string msg);
 	void	showStatus(void);
 };
 
