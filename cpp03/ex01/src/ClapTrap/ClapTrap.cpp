@@ -6,13 +6,13 @@
 
 /// @brief	constructor
 ClapTrap::ClapTrap(void)
-		: _name("default"), _hit_point(10), _energy_point(10), _attack_damage(0)
+	: _name("default"), _hit_point(10), _energy_point(10), _attack_damage(0)
 {
 	announce("constructor called");
 }
 
 ClapTrap::ClapTrap(std::string name)
-		: _name(name), _hit_point(10), _energy_point(10), _attack_damage(0)
+	: _name(name), _hit_point(10), _energy_point(10), _attack_damage(0)
 {
 	announce("constructor called");
 }
@@ -21,7 +21,7 @@ ClapTrap::ClapTrap(const ClapTrap &other)
 {
 	*this = other;
 	announce("copy constructor called");
-	
+
 }
 
 /// @brief	destructor

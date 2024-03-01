@@ -32,13 +32,13 @@ public:
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
 
-private:
+protected:
 	std::string		_name;
 	unsigned int	_hit_point;
 	unsigned int	_energy_point;
 	unsigned int	_attack_damage;
-
-	void	announce(std::string msg);
+	
+	virtual void	announce(std::string msg);
 	void	showStatus(void);
 };
 
