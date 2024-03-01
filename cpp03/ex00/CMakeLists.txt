@@ -10,6 +10,7 @@ project(trap)
 # Add all your source files
 set(SOURCES
 		src/main.cpp
+		src/ClapTrap/ClapTrap.cpp
 )
 
 # Create the executable
