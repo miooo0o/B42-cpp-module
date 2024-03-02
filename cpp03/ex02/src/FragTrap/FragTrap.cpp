@@ -1,38 +1,38 @@
-/// @file   ScavTrap.cpp
+/// @file   FragTrap.cpp
 /// @author minakim
-/// @date   01-Mar-2024
+/// @date   02-Mar-2024
 
-#include "ScavTrap.h"
+#include "FragTrap.h"
 
 /// @brief	constructor
-ScavTrap::ScavTrap(void)
+FragTrap::FragTrap(void)
 {
 	announce("constructor called");
 }
 
-ScavTrap::ScavTrap(std::string name)
+FragTrap::FragTrap(std::string name)
 {
 	_name = name;
 	_hit_point = 100;
-	_energy_point = 50;
-	_attack_damage = 20;
+	_energy_point = 100;
+	_attack_damage = 30;
 	announce("constructor called");
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
+FragTrap::FragTrap(const FragTrap &other)
 {
 	*this = other;
 	announce("copy constructor called");
 }
 
 /// @brief	destructor
-ScavTrap::~ScavTrap(void)
+FragTrap::~FragTrap(void)
 {
 	announce("destructor called");
 }
 
 /// @brief	operator
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+FragTrap &FragTrap::operator=(const FragTrap &other)
 {
 	if (this != &other)
 	{
@@ -45,11 +45,11 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 }
 
 /// @brief	public
-void	ScavTrap::attack(const std::string &target)
+void	FragTrap::attack(const std::string &target)
 {
 	if (_hit_point > STATUS_EXHAUSTION && _energy_point > STATUS_EXHAUSTION)
 	{
-		std::cout << "[ ScavTrap, "<< _name << " ]: "
+		std::cout << "[ FragTrap, "<< _name << " ]: "
 				  << "attacks " << target << ", causing "
 				  << _attack_damage <<" points of damages!" << std::endl;
 		_energy_point--;
@@ -59,16 +59,15 @@ void	ScavTrap::attack(const std::string &target)
 	else if (_energy_point == STATUS_EXHAUSTION)
 		announce("has not enough energy. failed to attack.");
 }
-
-///	@note	This member function will display a message
-/// informing that ScavTrap is now in Gatekeeper mode.
-void	ScavTrap::guardGate(void)
+///	@note
+///	This member function displays a positive high fives request on the standard output.
+void	FragTrap::highFivesGuys(void)
 {
-	announce("now in Gatekeeper mode!");
+	announce("hey, high five guys!");
 }
 
 /// @brief	private
-void	ScavTrap::announce(std::string msg)
+void	FragTrap::announce(std::string msg)
 {
-	std::cout << "[ ScavTrap, "<< _name << " ]: " << msg << std::endl;
+	std::cout << "[ FragTrap, "<< _name << " ]: " << msg << std::endl;
 }

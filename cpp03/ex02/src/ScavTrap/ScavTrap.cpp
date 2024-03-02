@@ -67,7 +67,7 @@ void	ScavTrap::guardGate(void)
 	announce("now in Gatekeeper mode!");
 }
 
-/// @brief	private
+///	@brief	private
 void	ScavTrap::announce(std::string msg)
 {
 	std::cout << "[ ScavTrap, "<< _name << " ]: " << msg << std::endl;

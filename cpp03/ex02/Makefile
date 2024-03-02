@@ -15,7 +15,8 @@ INCLUDE		=	-I./include -I./src
 # sources
 SRCS		=	$(SRCS_DIR)main.cpp \
 				$(SRCS_DIR)ClapTrap/ClapTrap.cpp \
-				$(SRCS_DIR)ScavTrap/ScavTrap.cpp
+				$(SRCS_DIR)ScavTrap/ScavTrap.cpp \
+				$(SRCS_DIR)FragTrap/FragTrap.cpp
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 
