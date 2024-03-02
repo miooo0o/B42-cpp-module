@@ -64,7 +64,15 @@ void	ScavTrap::attack(const std::string &target)
 /// informing that ScavTrap is now in Gatekeeper mode.
 void	ScavTrap::guardGate(void)
 {
-	announce("now in Gatekeeper mode!");
+	if (_hit_point > STATUS_EXHAUSTION && _energy_point > STATUS_EXHAUSTION)
+	{
+		announce("now in Gatekeeper mode!");
+		_energy_point--;
+	}
+	else if (_hit_point == STATUS_EXHAUSTION)
+		announce("Oh, I am already dead....");
+	else if (_energy_point == STATUS_EXHAUSTION)
+		announce("has not enough energy. failed to gatekeeper mode.");
 }
 
 /// @brief	private

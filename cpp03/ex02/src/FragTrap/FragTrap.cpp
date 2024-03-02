@@ -63,7 +63,15 @@ void	FragTrap::attack(const std::string &target)
 ///	This member function displays a positive high fives request on the standard output.
 void	FragTrap::highFivesGuys(void)
 {
-	announce("hey, high five guys!");
+	if (_hit_point > STATUS_EXHAUSTION && _energy_point > STATUS_EXHAUSTION)
+	{
+		announce("hey, high five guys!");
+		_energy_point--;
+	}
+	else if (_hit_point == STATUS_EXHAUSTION)
+		announce("Oh, I am already dead....");
+	else if (_energy_point == STATUS_EXHAUSTION)
+		announce("has not enough energy. failed to high fives.");
 }
 
 /// @brief	private
