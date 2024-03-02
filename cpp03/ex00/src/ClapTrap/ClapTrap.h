@@ -39,7 +39,6 @@ private:
 	unsigned int	_attack_damage;
 
 	void	announce(std::string msg);
-	void	showStatus(void);
 };
 
 #endif
