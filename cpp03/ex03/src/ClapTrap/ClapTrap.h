@@ -26,14 +26,22 @@ public:
 	~ClapTrap(void);
 	
 	ClapTrap &operator=(const ClapTrap &other);
-
+	
+///	@note	`virtual`
+///	Where "virtual" is the keyword used to declare a virtual function in C++.
+/// Virtual functions are used to implement polymorphism.
+/// A virtual function is a member function of a base class that has the ability
+/// to be overridden by a derived class.
+/// So, if I declare the function virtual in the base class,
+/// the derived class can override it to achieve the desired behavior.
 ///	@brief	member functions
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
-	void	announce(std::string msg);
+///	@note	member functions attack and announce will still be used in derived classes.
+	virtual void	attack(const std::string& target);
+	virtual void	announce(std::string msg);
+	void			takeDamage(unsigned int amount);
+	void			beRepaired(unsigned int amount);
 
-private:
+protected:
 	std::string		_name;
 	unsigned int	_hit_point;
 	unsigned int	_energy_point;
