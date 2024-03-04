@@ -7,6 +7,10 @@
 /// @brief	constructor
 FragTrap::FragTrap(void)
 {
+	_name = "default";
+	_hit_point = 100;
+	_energy_point = 100;
+	_attack_damage = 30;
 	announce("constructor called");
 }
 

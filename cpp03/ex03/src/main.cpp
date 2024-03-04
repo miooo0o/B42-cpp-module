@@ -62,6 +62,9 @@ int	main(void)
 	diamond.whoAmI();
 	diamond.print_status();
 	
+	DiamondTrap	noname_diamond;
+	noname_diamond.print_status();
+	
 	std::cout << std::endl
 			<< "------------------------------------------------------------" << std::endl;
 	std::cout << "destructor call:" << std::endl;

@@ -7,6 +7,10 @@
 /// @brief	constructor
 ScavTrap::ScavTrap(void)
 {
+	_name = "default";
+	_hit_point = 100;
+	_energy_point = 50;
+	_attack_damage = 20;
 	announce("constructor called");
 }
 

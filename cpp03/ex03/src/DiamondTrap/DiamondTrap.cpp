@@ -7,15 +7,12 @@
 
 /// @brief	constructor
 DiamondTrap::DiamondTrap(void)
-		: ClapTrap(), FragTrap(), ScavTrap()
+		: ClapTrap(), FragTrap(), ScavTrap(), _name("default")
 {
 	ClapTrap::_name += "_clap_name";
 	announce("constructor called");
 }
 
-//	TODO: FragTrap, ScavTrap: Need to fix a parameterless constructor function.
-//	- not being values when init.
-//	- ex03, ex02, ex01, ex00 check all exercise.
 DiamondTrap::DiamondTrap(std::string name)
 	: ClapTrap(), FragTrap(), ScavTrap(), _name(name)
 {
@@ -68,9 +65,9 @@ void	DiamondTrap::whoAmI(void)
 
 void	DiamondTrap::print_status(void)
 {
-	announce("status:");
-	std::cout << " - " << _name << std::endl;
-	std::cout << " - " << _hit_point << std::endl;
-	std::cout << " - " << _energy_point << std::endl;
-	std::cout << " - " << _attack_damage << std::endl;
+	announce("\nstatus:");
+	std::cout << " - name: " << _name << std::endl;
+	std::cout << " - hit point: " << _hit_point << std::endl;
+	std::cout << " - energy point: " << _energy_point << std::endl;
+	std::cout << " - attack damage: " << _attack_damage << std::endl;
 }
