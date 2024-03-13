@@ -10,14 +10,15 @@ DiamondTrap::DiamondTrap(void)
 		: ClapTrap(), FragTrap(), ScavTrap(), _name("default")
 {
 	ClapTrap::_name += "_clap_name";
-	announce("constructor called");
+	announce("the constructor is called. "
+			 "this values initialized from [FragTrap] and [ScavTrap].");
 }
 
 DiamondTrap::DiamondTrap(std::string name)
 	: ClapTrap(), FragTrap(), ScavTrap(), _name(name)
 {
 	ClapTrap::_name = name + "_clap_name";
-	announce("the constructor is called."
+	announce("the constructor is called. "
 			 "this values initialized from [FragTrap] and [ScavTrap].");
 }
 
