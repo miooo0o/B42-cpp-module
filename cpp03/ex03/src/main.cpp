@@ -15,8 +15,9 @@ int	main(void)
 	ScavTrap	scav("scav");
 	FragTrap	frag("frag");
 	DiamondTrap	diamond("diamond");
-	
 	std::cout << "------------------------------------------------------------" << std::endl;
+	
+	// test: ClapTrap
 	std::cout << std::endl
 			<< "| Clap Trap |"
 			<< std::endl << std::endl;
@@ -30,6 +31,7 @@ int	main(void)
 	clap.beRepaired(0);
 	
 	
+	// test: ScavTrap
 	std::cout << std::endl << std::endl
 			<< "| Scav Trap |"
 			<< std::endl << std::endl;
@@ -42,6 +44,7 @@ int	main(void)
 	scav.takeDamage(110);
 	scav.guardGate();
 	
+	// test: FragTrap
 	std::cout << std::endl << std::endl
 			<< "| Frag Trap |"
 			<< std::endl << std::endl;
@@ -54,17 +57,17 @@ int	main(void)
 	frag.takeDamage(130);
 	frag.highFivesGuys();
 	
+	// test: DiamondTrap
 	std::cout << std::endl << std::endl
 			  << "| Diamond Trap |"
 			  << std::endl << std::endl;
-	diamond.print_status();
-	diamond.attack("Target");
 	diamond.whoAmI();
 	diamond.print_status();
-	
-	DiamondTrap	noname_diamond;
-	noname_diamond.print_status();
-	
+	diamond.attack("Target");
+	diamond.print_status();
+	diamond.guardGate();
+	diamond.highFivesGuys();
+
 	std::cout << std::endl
 			<< "------------------------------------------------------------" << std::endl;
 	std::cout << "destructor call:" << std::endl;
