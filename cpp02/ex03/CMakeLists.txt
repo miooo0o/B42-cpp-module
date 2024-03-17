@@ -15,6 +15,8 @@ set(SOURCES
 		src/Point/Point.h
 		src/Point/Point.cpp
 		src/bsp/bsp.cpp
+		../../../../../../ClapTrap.h
+		../../../../../../ClapTrap.cpp
 )
 
 # Create the executable

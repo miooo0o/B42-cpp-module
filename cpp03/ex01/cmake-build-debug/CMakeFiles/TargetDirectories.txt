@@ -1,0 +1,3 @@
+/home/minakim/Project/42/CPP42/cpp03/ex01/cmake-build-debug/CMakeFiles/trap.dir
+/home/minakim/Project/42/CPP42/cpp03/ex01/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/minakim/Project/42/CPP42/cpp03/ex01/cmake-build-debug/CMakeFiles/rebuild_cache.dir
