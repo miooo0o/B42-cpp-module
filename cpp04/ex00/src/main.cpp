@@ -3,20 +3,20 @@
 /// @date   14-Mar-2024
 
 /// @ex00 subject
-/// - [X] Start by implementing a simple base class called @class Animal.
+/// @done Start by implementing a simple base class called @class Animal.
 /// It has one protected attribute: @protected std::string type;
-///	- [X] Implement a Dog @class that **inherits from Animal**.
-/// - [X] Implement a Cat @class that **inherits from Animal**.
+///	@done Implement a Dog @class that **inherits from Animal**.
+/// @done Implement a Cat @class that **inherits from Animal**.
 /// These two **derived classes** must set their type field depending on their name. Then,
 /// the Dog’s type will be initialized to "Dog", and the Cat’s type will be initialized to "Cat".
 /// The type of the Animal class can be left empty or set to the value of your choice.
-/// - [X] Every animal must be able to use the member function: @member makeSound()
+/// @done Every animal must be able to use the member function: @member makeSound()
 /// It will print an appropriate sound (cats don’t bark)
 /// To ensure you understood how it works,
-/// - [X] implement a WrongCat class that inherits from a WrongAnimal class.
+/// @done implement a WrongCat class that inherits from a WrongAnimal class.
 /// If you replace the Animal and the Cat by the wrong ones in the code above,
 /// the WrongCat should output the WrongAnimal sound.
-/// - [X] Implement and turn in more tests than the ones given above.
+/// @done Implement and turn in more tests than the ones given above.
 
 /// @include
 #include "Cat/Cat.h"
