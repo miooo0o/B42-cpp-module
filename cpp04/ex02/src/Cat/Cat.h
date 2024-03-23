@@ -19,7 +19,7 @@ public:
 	
 	Cat &operator=(const Cat &other);
 	
-	void	makeSound(void) const;
+	virtual void	makeSound(void) const;
 	Brain	*get_brain(void);
 
 private:

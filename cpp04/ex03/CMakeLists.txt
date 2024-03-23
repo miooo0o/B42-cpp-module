@@ -10,6 +10,10 @@ project(name)
 # Add all your source files
 set(SOURCES
 		src/main.cpp
+		src/AMateria/AMateria.cpp
+		src/ICharacter/ICharacter.h
+		src/Cure/Cure.cpp
+		src/Ice/Ice.cpp
 )
 
 # Create the executable

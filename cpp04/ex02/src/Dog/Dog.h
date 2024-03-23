@@ -19,7 +19,7 @@ public:
 	
 	Dog &operator=(const Dog &other);
 	
-	void	makeSound(void) const;
+	virtual void	makeSound(void) const;
 	Brain	*get_brain(void);
 private:
 	Brain	*_brain;
