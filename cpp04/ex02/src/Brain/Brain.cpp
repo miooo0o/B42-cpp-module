@@ -10,6 +10,7 @@ Brain::Brain(void)
 	announce("constructor called.");
 }
 
+/// @brief copy constructor
 Brain::Brain(const Brain &other)
 {
 	for (int i = 0; i < N_IDEAS; i++)
