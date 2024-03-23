@@ -7,6 +7,7 @@
 
 /// @brief	constructor
 Cure::Cure(void)
+	: AMateria()
 {
 }
 

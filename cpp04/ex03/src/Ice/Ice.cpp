@@ -7,9 +7,11 @@
 
 /// @brief	constructor
 Ice::Ice(void)
+	: AMateria("ice")
 {
 }
 
+/// @brief	copy constructor
 Ice::Ice(const Ice &other)
 {
 	*this = other;
@@ -25,8 +27,14 @@ Ice &Ice::operator=(const Ice &other)
 {
 	if (this != &other)
 	{
+		_type = other.getType();
 	}
-	return *this;
+	return (*this);
 }
 /// @brief	public
+
+AMateria*	Ice::clone(void) const
+{
+	return (new Ice());
+}
 /// @brief	private

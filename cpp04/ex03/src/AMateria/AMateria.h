@@ -24,7 +24,8 @@ public:
 	AMateria &operator=(const AMateria &other);
 	
 	///@return the materia type
-	std::string const & getType() const;
+	const std::string & getType() const;
+	
 	virtual AMateria* clone() const = 0;
 	virtual void use(ICharacter& target);
 protected:

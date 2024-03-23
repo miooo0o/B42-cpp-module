@@ -16,6 +16,7 @@ public:
 	~Ice(void);
 	Ice &operator=(const Ice &other);
 	
+	/// @note override
 	virtual AMateria* clone(void);
 	virtual void use(ICharacter& target);
 private:

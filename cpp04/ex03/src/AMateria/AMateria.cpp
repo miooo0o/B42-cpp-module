@@ -7,9 +7,16 @@
 
 /// @brief	constructor
 AMateria::AMateria(void)
+	: _type("non-elemental")
 {
 }
 
+AMateria::AMateria(std::string const &type)
+	:_type(type)
+{
+}
+
+/// @brief	copy constructor
 AMateria::AMateria(const AMateria &other)
 {
 	*this = other;
@@ -25,8 +32,18 @@ AMateria &AMateria::operator=(const AMateria &other)
 {
 	if (this != &other)
 	{
+		_type = other.getType();
 	}
-	return *this;
+	return (*this);
 }
 /// @brief	public
-/// @brief	private
+const std::string & AMateria::getType() const
+{
+	return (_type);
+}
+
+/// @todo change msg later on!
+void	AMateria::use(ICharacter& target)
+{
+	std::cout << "tmp msg: use " << getType() << std::endl;
+}

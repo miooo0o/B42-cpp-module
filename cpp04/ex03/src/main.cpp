@@ -3,7 +3,7 @@
 /// @date   23-Mar-2024
 
 
-/// @todo	Complete the definition of the following AMateria class and implement the necessary member functions.
+/// @done	Complete the definition of the following AMateria class and implement the necessary member functions.
 ///				- AMateria class
 /// @todo	Implement the Materias concrete classes Ice and Cure.
 ///				- Ice class
