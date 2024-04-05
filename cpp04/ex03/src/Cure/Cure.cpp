@@ -7,13 +7,13 @@
 
 /// @brief	constructor
 Cure::Cure(void)
-	: AMateria()
+	: AMateria("cure")
 {
 }
 
 Cure::Cure(const Cure &other)
 {
-	*this = other;
+	_type = other.getType();
 }
 
 /// @brief	destructor
@@ -26,8 +26,18 @@ Cure &Cure::operator=(const Cure &other)
 {
 	if (this != &other)
 	{
+		_type = other.getType();
 	}
 	return *this;
 }
+
 /// @brief	public
-/// @brief	private
+AMateria*	Cure::clone(void) const
+{
+	return (new Cure(*this));
+}
+
+void	use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+}

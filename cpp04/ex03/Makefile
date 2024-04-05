@@ -5,7 +5,7 @@ CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
 RM			= rm
 
 # standard
-NAME		=	name
+NAME		=	materia
 TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/

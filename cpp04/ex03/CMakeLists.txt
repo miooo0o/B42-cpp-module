@@ -5,7 +5,7 @@ macro(set_project_name NAME)
 	project(${PROJECT_NAME})
 endmacro()
 
-project(name)
+project(materia)
 
 # Add all your source files
 set(SOURCES
@@ -14,6 +14,8 @@ set(SOURCES
 		src/ICharacter/ICharacter.h
 		src/Cure/Cure.cpp
 		src/Ice/Ice.cpp
+		src/ImateriaSource/IMateriaSource.h
+		src/Character/Character.cpp
 )
 
 # Create the executable

@@ -20,14 +20,14 @@ public:
 	AMateria(void);
 	AMateria(std::string const &type);
 	AMateria(const AMateria &other);
-	~AMateria(void);
+	virtual ~AMateria();
 	AMateria &operator=(const AMateria &other);
 	
 	///@return the materia type
 	const std::string & getType() const;
-	
-	virtual AMateria* clone() const = 0;
-	virtual void use(ICharacter& target);
+	virtual AMateria*	clone() const = 0;
+	virtual void		use(ICharacter& target);
+
 protected:
 	std::string	_type;
 };

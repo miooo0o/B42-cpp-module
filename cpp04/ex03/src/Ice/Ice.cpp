@@ -14,7 +14,7 @@ Ice::Ice(void)
 /// @brief	copy constructor
 Ice::Ice(const Ice &other)
 {
-	*this = other;
+	_type = other.getType();
 }
 
 /// @brief	destructor
@@ -31,10 +31,14 @@ Ice &Ice::operator=(const Ice &other)
 	}
 	return (*this);
 }
-/// @brief	public
 
+/// @brief	public
 AMateria*	Ice::clone(void) const
 {
-	return (new Ice());
+	return (new Ice(*this));
 }
-/// @brief	private
+
+void	use(ICharacter& target)
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}

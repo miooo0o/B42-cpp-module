@@ -19,7 +19,7 @@ AMateria::AMateria(std::string const &type)
 /// @brief	copy constructor
 AMateria::AMateria(const AMateria &other)
 {
-	*this = other;
+	_type = other.getType();
 }
 
 /// @brief	destructor
@@ -42,8 +42,7 @@ const std::string & AMateria::getType() const
 	return (_type);
 }
 
-/// @todo change msg later on!
 void	AMateria::use(ICharacter& target)
 {
-	std::cout << "tmp msg: use " << getType() << std::endl;
+	std::cout << "AMateria `" << getType()<< "` used by " << target.getName() << std::endl;
 }
