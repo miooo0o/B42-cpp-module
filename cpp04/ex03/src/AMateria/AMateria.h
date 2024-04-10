@@ -6,7 +6,7 @@
 #define AMateria_H
 
 /// @library
-# include <iostream>
+#include <iostream>
 
 /// @include
 #include "ICharacter/ICharacter.h"

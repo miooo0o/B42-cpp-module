@@ -11,6 +11,7 @@ Cure::Cure(void)
 {
 }
 
+/// @brief	copy constructor
 Cure::Cure(const Cure &other)
 {
 	_type = other.getType();

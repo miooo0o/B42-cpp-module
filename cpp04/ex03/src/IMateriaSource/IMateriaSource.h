@@ -1,4 +1,4 @@
-/// @file   ImateriaSource.h
+/// @file   IMateriaSource.h
 /// @author minakim
 /// @date   05-Apr-2024
 
@@ -8,9 +8,8 @@
 /// @headerfile
 # include "AMateria/AMateria.h"
 
-/// @class ImateriaSource
-class IMateriaSource
-{
+/// @class IMateriaSource
+class IMateriaSource {
 public:
 	virtual				~IMateriaSource() {}
 	virtual void		learnMateria(AMateria*) = 0;

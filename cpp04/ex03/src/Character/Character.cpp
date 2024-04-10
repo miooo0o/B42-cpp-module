@@ -8,22 +8,23 @@
 Character::Character(void)
 	:_name("no name"), _n_equiped(0)
 {
-	for (int i = 0; i < _slotSize, i++;)
+	for (int i = 0; i < _slot_size, i++;)
 		_slots[i] = init_slot();
 }
 
 Character::Character(std::string const &name)
 		:_name(name), _n_equiped(0)
 {
-	for (int i = 0; i < _slotSize, i++;)
+	for (int i = 0; i < _slot_size; i++)
 		_slots[i] = init_slot();
 }
 
+/// @brief	copy constructor
 Character::Character(const Character &other)
 {
 	_name = other._name;
 	_n_equiped = other._n_equiped;
-	for (int i = 0; i < _slotSize, i++;)
+	for (int i = 0; i < _slot_size; i++)
 	{
 		if (_slots[i].is_equiped)
 			delete _slots[i].materia;
@@ -35,7 +36,7 @@ Character::Character(const Character &other)
 /// @brief	destructor
 Character::~Character(void)
 {
-	for (int i = 0; i < _slotSize, i++;)
+	for (int i = 0; i < _slot_size; i++)
 	{
 		if (_slots[i].is_equiped)
 			delete _slots[i].materia;
@@ -49,7 +50,7 @@ Character &Character::operator=(const Character &other)
 	{
 		_name = other._name;
 		_n_equiped = other._n_equiped;
-		for (int i = 0; i < _slotSize, i++;)
+		for (int i = 0; i < _slot_size; i++)
 		{
 			if (_slots[i].is_equiped)
 				delete _slots[i].materia;
@@ -59,6 +60,7 @@ Character &Character::operator=(const Character &other)
 	}
 	return (*this);
 }
+
 /// @brief	public
 const std::string &Character::getName(void) const
 {
@@ -67,7 +69,7 @@ const std::string &Character::getName(void) const
 
 void	Character::equip(AMateria* m)
 {
-	for (int i = 0; i < _slotSize; ++i)
+	for (int i = 0; i < _slot_size; i++)
 	{
 		if (!_slots[i].is_equiped)
 		{
@@ -80,7 +82,7 @@ void	Character::equip(AMateria* m)
 
 void	Character::unequip(int idx)
 {
-	if (idx >= 0 && idx < _slotSize && _slots[idx].is_equiped && _slots[idx].materia)
+	if (idx >= 0 && idx < _slot_size && _slots[idx].is_equiped && _slots[idx].materia)
 	{
 		_slots[idx] = init_slot();
 		_n_equiped--;
@@ -89,16 +91,14 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
-	if (idx >= 0 && idx < _slotSize && _slots[idx].is_equiped && _slots[idx].materia)
+	if (idx >= 0 && idx < _slot_size && _slots[idx].is_equiped && _slots[idx].materia)
 		_slots[idx].materia->use(target);
 }
 
 /// private
 materiaSlot	Character::init_slot(void)
 {
-	materiaSlot	slot;
-
-	slot = (materiaSlot)
+	materiaSlot	slot = (materiaSlot)
 	{
 		.materia = nullptr,
 		.is_equiped = false
@@ -108,9 +108,7 @@ materiaSlot	Character::init_slot(void)
 
 materiaSlot	Character::equip_slot(AMateria *m)
 {
-	materiaSlot	slot;
-	
-	slot = (materiaSlot)
+	materiaSlot	slot = (materiaSlot)
 	{
 		.materia = m,
 		.is_equiped = true

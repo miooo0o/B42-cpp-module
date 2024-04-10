@@ -14,8 +14,10 @@ set(SOURCES
 		src/ICharacter/ICharacter.h
 		src/Cure/Cure.cpp
 		src/Ice/Ice.cpp
-		src/ImateriaSource/IMateriaSource.h
+		src/IMateriaSource/IMateriaSource.h
 		src/Character/Character.cpp
+		src/MateriaSource/MateriaSource.cpp
+		src/MateriaSource/MateriaSource.h
 )
 
 # Create the executable
