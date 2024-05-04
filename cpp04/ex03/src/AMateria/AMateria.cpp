@@ -44,5 +44,5 @@ const std::string & AMateria::getType() const
 
 void	AMateria::use(ICharacter& target)
 {
-	std::cout << "AMateria `" << getType()<< "` used by " << target.getName() << std::endl;
+	std::cout << "AMateria `" << getType() << "` used by " << target.getName() << std::endl;
 }

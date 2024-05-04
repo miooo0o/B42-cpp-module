@@ -6,10 +6,10 @@
 
 /// @brief	constructor
 MateriaSource::MateriaSource(void)
-    : _n_knows(0)
 {
+	_n_knows = 0;
     for (int i = 0; i < _slot_size; i++)
-        _materias[i] = nullptr;
+        _materias[i] = NULL;
 }
 
 /// @brief	copy constructor
@@ -19,9 +19,7 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 }
 
 /// @brief	destructor
-MateriaSource::~MateriaSource(void)
-{
-
+MateriaSource::~MateriaSource(void) {
 }
 
 /// @brief	operator
@@ -42,13 +40,13 @@ MateriaSource&    MateriaSource::operator=(const MateriaSource& other)
  *		at most 4 Materias.
  *		They are not necessarily unique.
  */
-void    MateriaSource::learnMateria(AMateria *m)
+void    MateriaSource::learnMateria(AMateria* m)
 {
     if (!(_n_knows >= 0 && _n_knows <= _slot_size))
         return ;
-    for (int i = 0; i < _n_knows; i++)
+    for (int i = 0; i < _slot_size; i++)
     {
-        if (_materias[i] == nullptr)
+        if (_materias[i] == NULL)
         {
             _materias[i] = m;
             _n_knows++;
@@ -74,6 +72,14 @@ bool    is_materia(std::string const& type)
 AMateria*   MateriaSource::createMateria(std::string const& type)
 {
     if (!is_materia(type))
-        return (nullptr);
+        return (NULL);
+	for (int i = 0; i < _n_knows; i++)
+	{
+		if (_materias[i]->getType() == type)
+		{
+			std::cout << type << std::endl;
+			return (_materias[i]->clone());
+		}
+	}
+	return (NULL);
 }
-

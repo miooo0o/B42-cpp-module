@@ -9,7 +9,8 @@
 # include "AMateria/AMateria.h"
 
 /// @class IMateriaSource
-class IMateriaSource {
+class IMateriaSource
+{
 public:
 	virtual				~IMateriaSource() {}
 	virtual void		learnMateria(AMateria*) = 0;

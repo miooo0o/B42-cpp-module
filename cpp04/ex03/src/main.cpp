@@ -26,7 +26,7 @@
  * - Complete the definition of the following AMateria class and implement the necessary member functions.
  * - Implement the Materias concrete classes Ice and Cure.
  *
- * @todo Write the concrete class Character which will implement:
+ * @done Write the concrete class Character which will implement:
  *   - The Character possesses an inventory of 4 slots for Materias.
  *   - They equip the Materias in the first empty slot they find.
  *   - The unequip() member function must NOT delete the Materia.
@@ -34,7 +34,7 @@
  *   - Your Character must have a constructor taking its name as a parameter.
  *   - Handle deep copies of Character instances correctly.
  *   - Ensure proper memory management for Materias owned by a Character.
- * @todo Write the concrete class MateriaSource which will implement:
+ * @done Write the concrete class MateriaSource which will implement:
  *   - MateriaSource must be able to learn "templates" of Materias to create them when needed.
  *   - Generate a new Materia using just a string that identifies its type.
  *	 - learnMateria(AMateria*)
@@ -50,14 +50,12 @@
  * @tip
  * - While assigning a Materia to another, copying the type doesn't make sense.
  * - Handle the Materias left on the floor as you like to avoid memory leaks.
+ * 
+ * @todo debugging
+ * @todo think more: Is it necessary to add new class?
  */
 
-#include "ICharacter/ICharacter.h"
-#include "IMateriaSource/IMateriaSource.h"
-#include "Cure/Cure.h"
-#include "Ice/Ice.h"
-#include "MateriaSource/MateriaSource.h"
-#include "Character/Character.h"
+#include "Project.h"
 
 int	main(void)
 {
@@ -79,7 +77,6 @@ int	main(void)
 	delete bob;
 	delete me;
 	delete src;
-
-
+	
 	return (EXIT_SUCCESS);
 }

@@ -1,16 +1,16 @@
-/app/extra/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/app/extra/clion/bin/ninja/linux/x64/ninja -G Ninja -S /home/minakim/Desktop/CPP42/cpp00/ex01 -B /home/minakim/Desktop/CPP42/cpp00/ex01/cmake-build-debug
+C:\Users\mmmii\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/mmmii/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -DCMAKE_C_COMPILER=C:/mingw64/bin/gcc.exe -DCMAKE_CXX_COMPILER=C:/mingw64/bin/g++.exe -G Ninja -S C:\Users\mmmii\Documents\CPP42\cpp00\ex01 -B C:\Users\mmmii\Documents\CPP42\cpp00\ex01\cmake-build-debug
 -- The C compiler identification is GNU 13.2.0
 -- The CXX compiler identification is GNU 13.2.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
+-- Check for working C compiler: C:/mingw64/bin/gcc.exe - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
 -- Detecting CXX compiler ABI info
 -- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Check for working CXX compiler: C:/mingw64/bin/g++.exe - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done (0.4s)
+-- Configuring done (6.3s)
 -- Generating done (0.0s)
--- Build files have been written to: /home/minakim/Desktop/CPP42/cpp00/ex01/cmake-build-debug
+-- Build files have been written to: C:/Users/mmmii/Documents/CPP42/cpp00/ex01/cmake-build-debug
