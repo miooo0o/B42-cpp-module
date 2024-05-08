@@ -93,6 +93,7 @@ void	Character::use(int idx, ICharacter& target)
 		_slots[idx].materia->use(target);
 }
 
+/// @memberof MateriaSlot
 void	MateriaSlot::equip_slot(AMateria *m)
 {
 	is_equipped = true;

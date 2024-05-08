@@ -12,7 +12,8 @@
 # define MAX_SLOT_SIZE	4
 
 /// @class MateriaSource
-class MateriaSource : public IMateriaSource {
+class MateriaSource : public IMateriaSource
+{
 public:
     MateriaSource(void);
     MateriaSource(const MateriaSource& other);

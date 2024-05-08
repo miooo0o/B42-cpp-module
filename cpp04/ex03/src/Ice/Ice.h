@@ -9,7 +9,8 @@
 #include "AMateria/AMateria.h"
 
 /// @class Ice
-class Ice : public AMateria {
+class Ice : public AMateria
+{
 public:
 	Ice(void);
 	Ice(const Ice &other);

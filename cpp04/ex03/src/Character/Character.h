@@ -15,13 +15,6 @@ class Icharacter;
 /// @macro
 #define MAX_SLOT_SIZE	4
 
-/// @struct
-//struct MateriaSlot
-//{
-//	AMateria*	materia;
-//	bool		is_equiped;
-//};
-
 class MateriaSlot
 {
 public:

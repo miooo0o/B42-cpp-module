@@ -9,7 +9,8 @@
 #include "AMateria/AMateria.h"
 
 /// @class Cure
-class Cure : public AMateria {
+class Cure : public AMateria
+{
 public:
 	Cure(void);
 	Cure(const Cure &other);
