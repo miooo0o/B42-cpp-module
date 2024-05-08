@@ -1,7 +1,10 @@
 /// @file   Character.cpp
 /// @author minakim
 /// @date   05-Apr-2024
-
+///
+/// @note   17 Declaring and Initializing Member Data [obsidian]
+/// The initializing constructor takes precedence in data initialization.
+/// @guide  Let's use direct initialization in the constructor.
 #include "Character.h"
 
 /// @brief	constructor

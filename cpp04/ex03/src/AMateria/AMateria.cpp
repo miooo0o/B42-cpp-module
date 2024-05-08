@@ -4,7 +4,6 @@
 
 #include "AMateria.h"
 
-
 /// @brief	constructor
 AMateria::AMateria(void)
 	: _type("non-elemental")
