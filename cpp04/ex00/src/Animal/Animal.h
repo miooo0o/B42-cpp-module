@@ -13,6 +13,7 @@ class Animal {
 public:
 	Animal(void);
 	Animal(const Animal &other);
+	/// @todo documentation
 	virtual ~Animal(void);
 
 	Animal	&operator=(const Animal &other);
