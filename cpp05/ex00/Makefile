@@ -13,7 +13,8 @@ INCLUDE		=	-I./include -I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)main.cpp
+SRCS		=	$(SRCS_DIR)main.cpp \
+				$(SRCS_DIR)Bureaucrat/Bureaucrat.cpp
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

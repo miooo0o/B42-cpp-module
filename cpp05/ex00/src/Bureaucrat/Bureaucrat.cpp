@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/18 20:26:21 by minakim           #+#    #+#             */
+/*   Updated: 2024/09/18 21:36:07 by minakim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(std::string name, int grade)
-	: _name(name)
+/// @note The parameter _name is passed as a const std::string 
+/// to ensure immutability and avoid unnecessary copying, enhancing
+/// both safety and performance.
+Bureaucrat::Bureaucrat(const std::string& name, int grade)
+	: _name(name), _grade(grade)
 {
-	if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
-	if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
+	checkGrade();
 	_grade = grade;
 }
 
@@ -22,11 +34,18 @@ Bureaucrat::~Bureaucrat()
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& src)
 {
 	if (this != &src)
-	{
-		_name = src.getName();
 		_grade = src.getGrade();
-	}
 	return (*this);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+void	Bureaucrat::checkGrade()
+{
+	if (_grade < 1)
+		throw GradeTooHighException();
+	else if (_grade > 150)
+		throw GradeTooLowException();
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -50,7 +69,7 @@ void	Bureaucrat::incrementGrade()
 
 void	Bureaucrat::decrementGrade()
 {
-if (_grade >= 150)
+	if (_grade >= 150)
 		throw GradeTooLowException();
 	_grade++;
 }
