@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:26:21 by minakim           #+#    #+#             */
-/*   Updated: 2024/09/18 21:36:07 by minakim          ###   ########.fr       */
+/*   Updated: 2024/09/19 16:02:51 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& src)
 {
-    os << src.getName() << ", bureaucrat grade " << src.getGrade() << ".";
+    os << src.getName() << ", bureaucrat grade " << src.getGrade();
     return (os);
 }
