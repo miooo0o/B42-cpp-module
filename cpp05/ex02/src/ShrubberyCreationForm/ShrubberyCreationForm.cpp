@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:27:49 by minakim           #+#    #+#             */
-/*   Updated: 2024/09/30 16:56:00 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/09 17:12:16 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,49 @@
 ShrubberyCreationForm::ShrubberyCreationForm()
 	: AForm("default", 145, 137)
 {    
+	 #ifndef MUTED
+        std::cout << "Shrubbery " << getName() << " hired." << std::endl;
+        std::cout << "grades: sign 145, exec 137 as default" << std::endl;
+    #endif
 }
 
 /// @brief constructor, public 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 	: AForm(target, 145, 137)
 {
+	#ifndef MUTED
+        std::cout << "Shrubbery " << getName() << " hired." << std::endl;
+        std::cout << "grades: sign " << getMinSignGrade() << ", exec " << getMinExecGrade() << std::endl;
+    #endif
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
+	#ifndef MUTED
+        std::cout << "Shrubbery " << getName() << " dismissed." << std::endl;
+    #endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // copy constructor & assignation operator
 ////////////////////////////////////////////////////////////////////////////////
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 	: AForm(other)
 {
+	#ifndef MUTED
+        std::cout << "Shrubbery " << getName() << " dismissed." << std::endl;
+    #endif
 }
 
 ShrubberyCreationForm&
-	ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
+	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
 	if (this != &other)
 		AForm::operator=(other);
+    #ifndef MUTED
+        std::cout << "Shrubbery " << getName() << " copy assigned." << std::endl;
+    #endif	
 	return (*this);
 }
 
@@ -53,7 +70,7 @@ ShrubberyCreationForm&
 // member functions: private
 ////////////////////////////////////////////////////////////////////////////////
 
-void    ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+void    ShrubberyCreationForm::beExecute(Bureaucrat const &executor) const
 {
 	std::ofstream   outfile;
 

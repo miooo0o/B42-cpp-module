@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:26:44 by minakim           #+#    #+#             */
-/*   Updated: 2024/09/30 09:52:57 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/09 17:15:04 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ public:
 	Bureaucrat(const Bureaucrat& src);
 	~Bureaucrat();
 	Bureaucrat& operator=(const Bureaucrat& src);
+
 	std::string	getName() const;
 	int			getGrade() const;
 	void		incrementGrade();
 	void		decrementGrade();
 	void		checkGrade();
 	void		signForm(AForm& aform);
+	void		executeForm(const AForm& form);
 
 	class GradeTooHighException : public std::exception
 	{

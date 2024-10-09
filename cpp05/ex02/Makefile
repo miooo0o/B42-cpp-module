@@ -1,7 +1,9 @@
 # Alias
 CXX			= c++
 VERSION		= -std=c++98
-CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
+# Optional flag for MUTED mode
+MUTED_FLAG ?= -DMUTED
+CXXFLAGS	= -Wall -Werror -Wextra $(VERSION) $(MUTED_FLAG)
 RM			= rm
 
 # standard
@@ -15,7 +17,11 @@ INCLUDE		=	-I./include -I./src
 # sources
 SRCS		=	$(SRCS_DIR)main.cpp \
 				$(SRCS_DIR)Bureaucrat/Bureaucrat.cpp \
-				$(SRCS_DIR)AForm/AForm.cpp
+				$(SRCS_DIR)AForm/AForm.cpp \
+				$(SRCS_DIR)RobotomyRequestForm/RobotomyRequestForm.cpp \
+				$(SRCS_DIR)PresidentialPardonForm/PresidentialPardonForm.cpp \
+				$(SRCS_DIR)ShrubberyCreationForm/ShrubberyCreationForm.cpp 
+
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

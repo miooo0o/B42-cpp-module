@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/09 15:58:45 by minakim           #+#    #+#             */
+/*   Updated: 2024/10/09 17:13:38 by minakim          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 
 #include <iostream>
@@ -15,8 +27,8 @@ private:
 	const int			_minSignGrade;
 	const int			_minExecGrade;
 protected:
-	/// @brief  execute is a pure virtual function
-	virtual void	execute(Bureaucrat const &executor) const = 0;
+	/// @brief  beExecute is a pure virtual function
+	virtual void	beExecute(const Bureaucrat& executor) const = 0;
 public:
 	AForm();
 	AForm(std::string name, const int minSignGrade, const int minExecGrade);
@@ -27,6 +39,7 @@ public:
 	AForm(AForm const &other);
 	AForm& operator=(const AForm &other);
 	
+	void		execute(const Bureaucrat& executor) const;
 	void		beSigned(Bureaucrat &bureaucrat);
 	
 	int			getMinSignGrade() const;
@@ -38,7 +51,13 @@ public:
 	{
 		virtual const char* what() const throw();
 	};
+
 	class GradeTooLowException : public std::exception
+	{
+		virtual const char* what() const throw();
+	};
+
+	class FormNotSignedException : public std::exception
 	{
 		virtual const char* what() const throw();
 	};

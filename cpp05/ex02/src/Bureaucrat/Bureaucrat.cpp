@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:26:21 by minakim           #+#    #+#             */
-/*   Updated: 2024/09/30 09:52:43 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/09 17:22:23 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 Bureaucrat::Bureaucrat(const std::string& name, int grade)
 	: _name(name), _grade(grade)
 {
+	#ifndef MUTED
+        std::cout << "Bureaucrat! name: " << _name << ", grade: " << _grade << std::endl;
+    #endif
 	checkGrade();
 	_grade = grade;
 }
@@ -26,16 +29,25 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade)
 Bureaucrat::Bureaucrat(const Bureaucrat& src)
 	:_name(src._name), _grade(src._grade)
 {
+	#ifndef MUTED
+        std::cout << "Bureaucrat " << _name << " copy constructed." << std::endl;
+    #endif
 }
 
 Bureaucrat::~Bureaucrat()
 {
+	#ifndef MUTED
+        std::cout << "Bureaucrat " << _name << " dismissed." << std::endl;
+    #endif
 }
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& src)
 {
 	if (this != &src)
 		_grade = src.getGrade();
+	#ifndef MUTED
+        std::cout << "Bureaucrat " << _name << " copy assigned." << std::endl;
+    #endif
 	return (*this);
 }
 
@@ -51,15 +63,30 @@ void	Bureaucrat::checkGrade()
 
 void	Bureaucrat::signForm(AForm& aform)
 {
+    try
+    {
+        aform.beSigned(*this);
+        std::cout << _name << " signs the form " << aform.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << _name << " cannot sign the form " << aform.getName()
+                  << " because: " << e.what() << std::endl;
+    }
+}
+
+
+void Bureaucrat::executeForm(const AForm &form)
+{
 	try
 	{
-		aform.beSigned(*this);
-		std::cout << _name << " signs " << aform.getName() << std::endl;
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
-		std::cerr << _name << " cannot sign " << aform.getName()
-			<< " because " << e.what() << std::endl;
+		std::cout << _name << " couldn't execute " << form.getName();
+		std::cout << " because " << e.what() << std::endl;
 	}
 }
 
@@ -106,6 +133,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& src)
 {
-    os << src.getName() << ", bureaucrat grade " << src.getGrade();
+    os << src.getName() << "'s grade " << src.getGrade();
     return (os);
 }

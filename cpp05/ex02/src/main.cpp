@@ -3,20 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:04:54 by minakim           #+#    #+#             */
-/*   Updated: 2024/09/30 09:50:11 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/09 16:56:18 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 #include <sstream>
 #include <iostream>
 
 int main()
 {
-	return (1);
+	try
+    {
+        Bureaucrat bob("Bob", 42);
+        std::cout << bob << std::endl;
+
+        PresidentialPardonForm pardon("Alice");
+        bob.signForm(pardon);
+        bob.executeForm(pardon);
+
+        ShrubberyCreationForm shrubbery("Garden");
+        bob.signForm(shrubbery);
+        bob.executeForm(shrubbery);
+
+        RobotomyRequestForm robotomy("Marvin");
+        bob.signForm(robotomy);
+        bob.executeForm(robotomy);
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    }
+
+    return 0;
 }
