@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:28:06 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/09 17:12:16 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:30:41 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 RobotomyRequestForm::RobotomyRequestForm()
-	:AForm("default", 72, 45)
+	: AForm("Robotomy Request Form", 72, 45)
 {
 	#ifndef MUTED
-		std::cout << "Robotomy " << getName() << " hired." << std::endl;
+		 std::cout << "RobotomyRequestForm created." << std::endl;
 		std::cout << "grades: sign 72, exec 45 as default" << std::endl;
 	#endif
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-	:AForm(target, 72, 45)
+    : AForm("Robotomy Request Form", 72, 45), _target(target)
 {
-	#ifndef MUTED
-		std::cout << "Robotomy " << getName() << " hired." << std::endl;
-		std::cout << "grades: sign " << getMinSignGrade() << ", exec " << getMinExecGrade() << std::endl;
-	#endif
+    #ifndef MUTED
+        std::cout << "RobotomyRequestForm created for " << _target << "." << std::endl;
+        std::cout << "Grades: sign 72, exec 45" << std::endl;
+    #endif
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	#ifndef MUTED
-        std::cout << "Robotomy " << getName() << " dismissed." << std::endl;
-    #endif
+    #ifndef MUTED
+        std::cout << "RobotomyRequestForm for " << _target << " dismissed." << std::endl;
+    #endif    
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -46,20 +46,22 @@ RobotomyRequestForm::~RobotomyRequestForm()
 ////////////////////////////////////////////////////////////////////////////////
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
-	: AForm(other)
+    : AForm(other), _target(other._target)
 {
-	 #ifndef MUTED
-        std::cout << "Robotomy " << getName() << " copy constructed." << std::endl;
+    #ifndef MUTED
+        std::cout << "RobotomyRequestForm for " << _target << " copy constructed." << std::endl;
     #endif
 }
 
-RobotomyRequestForm&
-	RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
-	if (this != &other)
-		AForm::operator=(other);
-	#ifndef MUTED
-        std::cout << "Robotomy " << getName() << " copy assigned." << std::endl;
+    if (this != &other)
+    {
+        AForm::operator=(other);
+        _target = other._target;
+    }
+    #ifndef MUTED
+        std::cout << "RobotomyRequestForm for " << _target << " copy assigned." << std::endl;
     #endif
 	return (*this);
 }
@@ -71,13 +73,13 @@ RobotomyRequestForm&
 
 void	RobotomyRequestForm::beExecute(Bureaucrat const &executor) const
 {
-	std::cout << "(drilling noises---!) " << std::flush;
-	srand(static_cast<unsigned int>(time(0)));
-	int getRandom = rand() % 2;
-	if (getRandom)
-		std::cout << getName() << " has been robotomized successfull."
-			<< std::endl;
-	else
-		std::cout << getName() << " robotomy failed."
-			<< std::endl;
+    (void)executor;
+    std::cout << "(drilling noises---!) " << std::flush;
+    srand(static_cast<unsigned int>(time(0)));
+    int getRandom = rand() % 2;
+
+    if (getRandom)
+        std::cout << _target << " has been robotomized successfully." << std::endl;
+    else
+        std::cout << _target << " robotomy failed." << std::endl;
 }

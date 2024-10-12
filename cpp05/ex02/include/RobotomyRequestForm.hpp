@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:58:53 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/09 17:12:16 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:29:19 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ class RobotomyRequestForm : public AForm
 {
     
 private:
+    std::string _target;
+
     RobotomyRequestForm();
     void    beExecute(Bureaucrat const &executor) const;
 

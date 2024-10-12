@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:27:47 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/09 17:12:16 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:32:26 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 class ShrubberyCreationForm: public AForm
 {
 private:
+    std::string _target;
+    
     ShrubberyCreationForm();
     void    beExecute(Bureaucrat const &executor) const;
 

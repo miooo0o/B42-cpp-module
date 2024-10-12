@@ -5,8 +5,8 @@ AForm::AForm()
     : _name("default"), _isSigned(false), _minSignGrade(1), _minExecGrade(1)
 {
     #ifndef MUTED
-        std::cout << "AForm " << _name << " hired." << std::endl;
-        std::cout << "grades: sign 1, exec 1 as default" << std::endl;
+        std::cout << "AForm \"" << getName() << "\" created." << std::endl;
+        std::cout << "Grades: sign 1, exec 1 (default)" << std::endl;
     #endif
 }
 
@@ -14,8 +14,8 @@ AForm::AForm(std::string name, const int minSignGrade, const int minExecGrade)
     : _name(name), _isSigned(false), _minSignGrade(minSignGrade), _minExecGrade(minExecGrade)
 {
     #ifndef MUTED
-        std::cout << "AForm " << _name << " hired." << std::endl;
-        std::cout << "grades: sign " << _minSignGrade << ", exec " << _minExecGrade << std::endl;
+        std::cout << "AForm \"" << getName() << "\" created." << std::endl;
+        std::cout << "Grades: sign " << _minSignGrade << ", exec " << _minExecGrade << std::endl;
     #endif
     if (minSignGrade < 1 || minExecGrade < 1)
         throw AForm::GradeTooHighException();
@@ -26,7 +26,7 @@ AForm::AForm(std::string name, const int minSignGrade, const int minExecGrade)
 AForm::~AForm()
 {
     #ifndef MUTED
-        std::cout << "AForm " << _name << " dismissed." << std::endl;
+        std::cout << "AForm \"" << getName() << "\" dismissed." << std::endl;
     #endif
 }
 
@@ -35,7 +35,7 @@ AForm::AForm(AForm const &other)
     _minSignGrade(other._minSignGrade), _minExecGrade(other._minExecGrade)
 {
     #ifndef MUTED
-        std::cout << "AForm " << _name << " copy constructed." << std::endl;
+        std::cout << "AForm \"" << getName() << "\" copy constructed." << std::endl;
     #endif
 }
 
@@ -45,7 +45,7 @@ AForm& AForm::operator=(const AForm &other)
         _isSigned = other._isSigned;
     
     #ifndef MUTED
-        std::cout << "AForm " << _name << " copy assigned." << std::endl;
+         std::cout << "AForm \"" << getName() << "\" copy constructed." << std::endl;
     #endif
     return (*this);
 }
@@ -68,6 +68,7 @@ void    AForm::execute(Bureaucrat const &executor) const
     else
         beExecute(executor);
 }
+
 //////////////////////////////////////////////////////////////////////////////
 
 int     AForm::getMinSignGrade() const
@@ -110,12 +111,13 @@ const char* AForm::FormNotSignedException::what() const throw()
 
 std::ostream &operator<<(std::ostream &os, AForm const &form)
 {
-    os << "AForm: " << form.getName()
+    os << "AForm: \"" << form.getName() << "\""
         << ", sign grade: " << form.getMinSignGrade() 
         << ", exec grade: " << form.getMinExecGrade();
     if (form.getIsSigned())
         os << ", signed";
     else
         os << ", not signed";
+    return (os);
     return (os);
 }

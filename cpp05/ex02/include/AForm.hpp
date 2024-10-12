@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:58:45 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/09 17:13:38 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:24:43 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ public:
 	int 		getMinExecGrade() const;
 	std::string	getName() const;
 	bool		getIsSigned() const;
-
 	class GradeTooHighException : public std::exception
 	{
 		virtual const char* what() const throw();

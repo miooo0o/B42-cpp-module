@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minakim <minakim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:04:54 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/09 16:56:18 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/12 12:36:18 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,16 @@
 
 int main()
 {
+    std::string target("Guri Guri");
+    std::string name("Mina Kim");
+
 	try
     {
-        Bureaucrat bob("Bob", 42);
-        std::cout << bob << std::endl;
+        ShrubberyCreationForm form(target);
+        Bureaucrat bureaucrat(name, 1);
 
-        PresidentialPardonForm pardon("Alice");
-        bob.signForm(pardon);
-        bob.executeForm(pardon);
-
-        ShrubberyCreationForm shrubbery("Garden");
-        bob.signForm(shrubbery);
-        bob.executeForm(shrubbery);
-
-        RobotomyRequestForm robotomy("Marvin");
-        bob.signForm(robotomy);
-        bob.executeForm(robotomy);
+        bureaucrat.signForm(form);
+        bureaucrat.executeForm(form);
     }
     catch (const std::exception& e)
     {
