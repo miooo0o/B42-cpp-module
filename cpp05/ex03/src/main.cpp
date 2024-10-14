@@ -6,31 +6,42 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 16:04:54 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/14 17:19:38 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/14 18:22:40 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "Intern.hpp"
 
 #include <sstream>
 #include <iostream>
 
 int main()
 {
-	try
-	{
-		Bureaucrat  b1("b1", 3);
-		Form		f1("f1", 1, 1);
+    std::string target("Guri Guri");
+    std::string name("Mina Kim");
 
-		b1.signForm(f1);
-		f1.beSigned(b1);
-		b1.signForm(f1);
-		std::cout << f1 << std::endl;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return (1);
+	try
+    {
+        Intern someRandomIntern;
+        Form* rrf;
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+        Bureaucrat b1(name, 1);
+        Bureaucrat b2("Not " + name, 72);
+
+        b1.signForm(*rrf);
+        b2.signForm(*rrf);
+        b1.executeForm(*rrf);
+        b2.executeForm(*rrf);
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
+    }
+
+    return 0;
 }
