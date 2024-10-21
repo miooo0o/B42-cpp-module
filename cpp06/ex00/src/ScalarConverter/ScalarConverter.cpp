@@ -6,14 +6,15 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 21:47:02 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/14 21:58:45 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/17 18:00:19 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
 /// @brief Objective:
-/// 1. handling errors differently depending on the situation. Handle critical errors and simple errors differently.
+/// 1. handling errors differently depending on the situation.
+///		Handle critical errors and simple errors differently.
 /// 2. handle “type distinction” and “conversion” differently.
 /// 3. ensure that a function can only be responsible for one thing.
 
@@ -137,17 +138,85 @@ bool    ScalarConverter::isDouble(const std::string& input)
 
 void    ScalarConverter::convertToChar(const std::string& input)
 {
-
+	char c = input[0];
+	if (isprint(c))
+		printTable(c);
+	else
+		invalidInput("Non-printable character");
 }
 
 void	ScalarConverter::convertToInt(const std::string& input)
 {
+	std::istringstream iss(input);
+	int i;
+	iss >> i;
+	if (iss.fail() && !iss.eof())
+		throw ScalarConverter::ConversionFailException();
+	printTable(i);
+}
 
+void	ScalarConverter::convertToFloat(const std::string& input)
+{
+	float f;
+	if (input == "nanf")
+		f = NAN;
+	else if (input == "+inff")
+		f = INFINITY;
+	else if (input == "-inff")
+		f = -INFINITY;
+	else
+	{
+		std::string floatPart = input.substr(0, input.length() - 1);
+		std::istringstream iss(floatPart);
+		iss >> f;
+		if (iss.fail() && !iss.eof())
+			throw ScalarConverter::ConversionFailException();
+	}
+	printTable(f);
+}
+
+void	ScalarConverter::convertToDouble(const std::string& input)
+{
+	double d;
+	if (input == "nan")
+		d = NAN;
+	else if (input == "+inf")
+		d = INFINITY;
+	else if (input == "-inf")
+		d = -INFINITY;
+	else
+	{
+		std::istringstream iss(input);
+		iss >> d;
+		if (iss.fail() && !iss.eof())
+			throw ScalarConverter::ConversionFailException();
+	}
+	printTable(d);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Private methods : Print table
 ////////////////////////////////////////////////////////////////////////////////
+
+void	ScalarConverter::printTable(char c)
+{
+
+}
+
+void	ScalarConverter::printTable(int i)
+{
+
+}
+
+void	ScalarConverter::printTable(float f)
+{
+
+}
+
+void	ScalarConverter::printTable(double d)
+{
+	
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Private methods : Error handling
@@ -165,4 +234,9 @@ void	ScalarConverter::invalidInput(const std::string& msg)
 const char* ScalarConverter::ConversionFailException::what() const throw()
 {
 	return ("A critical error occurred during the conversion process.");
+}
+
+const char* ScalarConverter::InvalidFormatException::what() const throw()
+{
+	return ("Invalid format. Please check the input format.");
 }
