@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 21:47:00 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/26 12:47:44 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/26 14:30:12 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,6 @@ private:
     static void convertToDouble(double value);
 
     static double parseInput(const std::string& input);
+    static std::string	checkFormatting(const std::string& input);
+
 };

@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 21:47:02 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/26 12:47:00 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/26 14:43:24 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,43 @@ void    ScalarConverter::convert(const std::string& input) {
 double	ScalarConverter::parseInput(const std::string& input)
 {
 	if (input == "nan" || input == "nanf")
-		return NAN;
+		return (NAN);
     if (input == "+inf" || input == "+inff")
-		return INFINITY;
+		return (INFINITY);
     if (input == "-inf" || input == "-inff")
-		return -INFINITY;
+		return (-INFINITY);
+	
+	
 
+	if (input.size() == 1 && std::isprint(input[0]) && !std::isdigit(input[0]))
+        return (static_cast<double>(input[0]));
+	
+	std::string			cleanedInput = checkFormatting(input);
+	std::istringstream	iss(cleanedInput);
 	double				value;
-	std::istringstream	iss(input);
 
 	iss >> value;
 	if (iss.fail() || !iss.eof())
-		throw std::invalid_argument("Invalid input format");
+		throw std::invalid_argument("Invalid input format: cannot convert to a number");
 	return (value);
+}
+
+
+std::string	ScalarConverter::checkFormatting(const std::string& input)
+{
+	int dotCount = 0;
+    for (std::size_t i = 0; i < input.size(); ++i)
+	{
+        if (input[i] == '.')
+            ++dotCount;
+        if (dotCount > 1)
+            throw std::invalid_argument("Invalid input format: multiple '.' characters");
+    }
+
+	std::string cleanedInput = input;
+    if (input.back() == 'f')
+        cleanedInput = input.substr(0, input.size() - 1);
+	return (cleanedInput);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
