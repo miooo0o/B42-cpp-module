@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 21:47:00 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/26 12:39:49 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/26 12:47:44 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@
 class ScalarConverter
 {
 public:
-    enum Type
-    {
-        CHAR,
-        INT,
-        FLOAT,
-        DOUBLE,
-        INVALID
-    };
     static void convert(const std::string &input);
 
 private:
