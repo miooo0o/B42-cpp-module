@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 21:47:00 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/17 17:19:33 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/26 12:39:49 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,11 @@ private:
     ~ScalarConverter();
     ScalarConverter &operator=(const ScalarConverter &other);
 
-    static Type detectType(const std::string& input);
-    static bool isDouble(const std::string& input);
-    static bool isInt(const std::string& input);
-    static bool isFloat(const std::string& input);
-    static bool isChar(const std::string& input);
 
-    static void convertToChar(const std::string& input);
-    static void convertToInt(const std::string& input);
-    static void convertToFloat(const std::string& input);
-    static void convertToDouble(const std::string& input);
+    static void convertToChar(double value);
+    static void convertToInt(double value);
+    static void convertToFloat(double value);
+    static void convertToDouble(double value);
 
-    static void printTable(char c);
-    static void printTable(int i);
-    static void printTable(float f);
-    static void printTable(double d);
-
-    static void invalidInput(const std::string& msg);
-
-    class ConversionFailException : public std::exception
-    {
-        public:
-            virtual const char* what() const throw();
-    };
-
-    class InvalidFormatException : public std::exception
-    {
-        public:
-            virtual const char* what() const throw();
-    };
+    static double parseInput(const std::string& input);
 };

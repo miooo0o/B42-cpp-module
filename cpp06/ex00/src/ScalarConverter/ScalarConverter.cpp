@@ -6,17 +6,11 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 21:47:02 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/17 18:00:19 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/26 12:47:00 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
-/// @brief Objective:
-/// 1. handling errors differently depending on the situation.
-///		Handle critical errors and simple errors differently.
-/// 2. handle “type distinction” and “conversion” differently.
-/// 3. ensure that a function can only be responsible for one thing.
 
 ////////////////////////////////////////////////////////////////////////////////
 // Public methods
@@ -28,24 +22,12 @@ void    ScalarConverter::convert(const std::string& input) {
 	
 	try
 	{
-		Type type = detectType(input);
-		switch (type)
-		{
-			case CHAR:
-				convertToChar(input);
-				break;
-			case INT:
-				convertToInt(input);
-				break;
-			case FLOAT:
-				convertToFloat(input);
-				break;
-			case DOUBLE:
-				convertToDouble(input);
-				break;
-			default:
-				invalidInput("Unrecognized type"); // exepction?
-		}
+		double value = parseInput(input);
+
+		convertToChar(value);
+		convertToInt(value);
+		convertToFloat(value);
+		convertToDouble(value);
 	}
 	catch(const std::exception& e)
 	{
@@ -54,189 +36,67 @@ void    ScalarConverter::convert(const std::string& input) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Private methods : Type detection
+// Private methods
 ////////////////////////////////////////////////////////////////////////////////
 
-ScalarConverter::Type ScalarConverter::detectType(const std::string& input)
+double	ScalarConverter::parseInput(const std::string& input)
 {
-	if (isChar(input))
-		return CHAR;
-	else if (isDouble(input))
-		return DOUBLE;
-	else if (isFloat(input))
-		return FLOAT;
-	else if (isInt(input))
-		return INT;
-	return INVALID;
-}
+	if (input == "nan" || input == "nanf")
+		return NAN;
+    if (input == "+inf" || input == "+inff")
+		return INFINITY;
+    if (input == "-inf" || input == "-inff")
+		return -INFINITY;
 
-bool    ScalarConverter::isChar(const std::string& input)
-{
-	return (input.length() == 1 && !isdigit(input[0]) && isprint(input[0]));
-}
+	double				value;
+	std::istringstream	iss(input);
 
-bool    ScalarConverter::isInt(const std::string& input)
-{
-	std::istringstream iss(input);
-	long long ll;
-	
-	iss >> ll;
-	if (iss.fail() && !iss.eof())
-		throw ScalarConverter::ConversionFailException();
-	if (ll < std::numeric_limits<int>::min() || ll > std::numeric_limits<int>::max())
-		throw std::out_of_range("Int overflow");
-	return (true);
-}
-
-bool    ScalarConverter::isFloat(const std::string& input)
-{
-	if (input == "nanf" || input == "+inff" || input == "-inff")
-		return (true);
-	if (input.back() != 'f')
-	{
-		invalidInput("to convert float, end of input must have 'f' (e.g., 42.0f)");
-		return (false);
-	}
-	if (input.find('.') == std::string::npos)
-	{
-		invalidInput("to convert float, input must have '.' (e.g., 42.0f)");
-		return (false);
-	}
-	std::string floatPart = input.substr(0, input.length() - 1);
-	std::istringstream iss(floatPart);
-	float f;
-	iss >> f;
-	if (iss.fail() && !iss.eof())
-		throw ScalarConverter::ConversionFailException();
-	if (f < std::numeric_limits<float>::min() || f > std::numeric_limits<float>::max())
-        throw std::out_of_range("Float overflow");
-	return (true);
-}
-
-bool    ScalarConverter::isDouble(const std::string& input)
-{
-	if (input == "nan" || input == "+inf" || input == "-inf")
-		return (true);
-	if (input.find('.') == std::string::npos)
-    {
-		invalidInput("to convert double, input must have '.' (e.g., 42.0)");
-		return (false);
-	}
-	std::istringstream iss(input);
-	double d;
-	iss >> d;
-	if (iss.fail() && !iss.eof())
-		throw ScalarConverter::ConversionFailException();
-	if (d < std::numeric_limits<double>::min() || d > std::numeric_limits<double>::max())
-		throw std::out_of_range("Double overflow");
-	return (true);
+	iss >> value;
+	if (iss.fail() || !iss.eof())
+		throw std::invalid_argument("Invalid input format");
+	return (value);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Private methods : Conversion
-////////////////////////////////////////////////////////////////////////////////
 
-void    ScalarConverter::convertToChar(const std::string& input)
+void	ScalarConverter::convertToChar(double value)
 {
-	char c = input[0];
-	if (isprint(c))
-		printTable(c);
+	std::cout << "char: ";
+	if (std::isnan(value) || std::isinf(value) || value < CHAR_MIN || value > CHAR_MAX)
+		std::cout << "impossible" << std::endl;
+	else if (std::isprint(static_cast<char>(value)))
+		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
 	else
-		invalidInput("Non-printable character");
+		std::cout << "Non displayable" << std::endl;
 }
 
-void	ScalarConverter::convertToInt(const std::string& input)
+void   ScalarConverter::convertToInt(double value)
 {
-	std::istringstream iss(input);
-	int i;
-	iss >> i;
-	if (iss.fail() && !iss.eof())
-		throw ScalarConverter::ConversionFailException();
-	printTable(i);
-}
-
-void	ScalarConverter::convertToFloat(const std::string& input)
-{
-	float f;
-	if (input == "nanf")
-		f = NAN;
-	else if (input == "+inff")
-		f = INFINITY;
-	else if (input == "-inff")
-		f = -INFINITY;
+	std::cout << "int: ";
+	if (std::isnan(value) || std::isinf(value) || value < INT_MIN || value > INT_MAX)
+		std::cout << "impossible" << std::endl;
 	else
-	{
-		std::string floatPart = input.substr(0, input.length() - 1);
-		std::istringstream iss(floatPart);
-		iss >> f;
-		if (iss.fail() && !iss.eof())
-			throw ScalarConverter::ConversionFailException();
-	}
-	printTable(f);
+		std::cout << static_cast<int>(value) << std::endl;
 }
 
-void	ScalarConverter::convertToDouble(const std::string& input)
+void	ScalarConverter::convertToFloat(double value)
 {
-	double d;
-	if (input == "nan")
-		d = NAN;
-	else if (input == "+inf")
-		d = INFINITY;
-	else if (input == "-inf")
-		d = -INFINITY;
+	std::cout << "float: ";
+	if (std::isnan(value))
+		std::cout << "nanf" << std::endl;
+	else if (std::isinf(value))
+		std::cout << (value < 0 ? "-inff" : "+inff") << std::endl;
 	else
-	{
-		std::istringstream iss(input);
-		iss >> d;
-		if (iss.fail() && !iss.eof())
-			throw ScalarConverter::ConversionFailException();
-	}
-	printTable(d);
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// Private methods : Print table
-////////////////////////////////////////////////////////////////////////////////
-
-void	ScalarConverter::printTable(char c)
+void	ScalarConverter::convertToDouble(double value)
 {
-
-}
-
-void	ScalarConverter::printTable(int i)
-{
-
-}
-
-void	ScalarConverter::printTable(float f)
-{
-
-}
-
-void	ScalarConverter::printTable(double d)
-{
-	
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// Private methods : Error handling
-////////////////////////////////////////////////////////////////////////////////
-
-void	ScalarConverter::invalidInput(const std::string& msg)
-{
-	std::cerr << "Error: " << msg << std::endl;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// Private methods : Exception classes
-////////////////////////////////////////////////////////////////////////////////
-
-const char* ScalarConverter::ConversionFailException::what() const throw()
-{
-	return ("A critical error occurred during the conversion process.");
-}
-
-const char* ScalarConverter::InvalidFormatException::what() const throw()
-{
-	return ("Invalid format. Please check the input format.");
+	std::cout << "double: ";
+	if (std::isnan(value))
+		std::cout << "nan" << std::endl;
+	else if (std::isinf(value))
+		std::cout << (value < 0 ? "-inf" : "+inf") << std::endl;
+	else
+		std::cout << std::fixed << std::setprecision(1) << value << std::endl;
 }
