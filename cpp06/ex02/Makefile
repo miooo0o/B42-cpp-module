@@ -7,7 +7,7 @@ FSANITIZE	= -g3 -fsanitize=address
 RM			= rm
 
 # standard
-NAME		=	serialize
+NAME		=	base
 TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
@@ -16,7 +16,7 @@ INCLUDE		=	-I./include -I./src
 
 # sources
 SRCS		=	$(SRCS_DIR)main.cpp \
-				$(SRCS_DIR)Serializer/Serializer.cpp
+				$(SRCS_DIR)Base/Base.cpp
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

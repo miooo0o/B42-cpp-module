@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 13:17:46 by minakim           #+#    #+#             */
-/*   Updated: 2024/10/26 13:19:21 by minakim          ###   ########.fr       */
+/*   Updated: 2024/10/28 16:45:25 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <string>
 #include <iostream>
+#include <cstdint>
 
 struct Data
 {

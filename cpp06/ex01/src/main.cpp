@@ -11,6 +11,6 @@ int main()
         std::cout << "Data is the same" << std::endl;
     else
         std::cout << "Data is different" << std::endl;
-    // delete data;
+    delete data;
     return (0);
 }
