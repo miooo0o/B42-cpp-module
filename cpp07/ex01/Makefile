@@ -5,7 +5,7 @@ CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
 RM			= rm
 
 # standard
-NAME		=	whatever
+NAME		=	iter
 TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
