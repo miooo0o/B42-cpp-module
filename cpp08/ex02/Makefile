@@ -5,7 +5,7 @@ CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
 RM			= rm
 
 # standard
-NAME		=	name
+NAME		=	mutantstack
 TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
@@ -13,7 +13,7 @@ INCLUDE		=	-I./include -I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)main.cpp
+SRCS		=	$(SRCS_DIR)main.cpp	
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

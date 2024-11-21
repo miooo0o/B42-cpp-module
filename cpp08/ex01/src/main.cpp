@@ -29,7 +29,6 @@ void fillSequentialNumbers(Span &span, int start, int step, int count)
 	}
 }
 
-
 int main()
 {
 	try
