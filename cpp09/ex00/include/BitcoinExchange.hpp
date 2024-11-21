@@ -7,19 +7,33 @@
 #include <iostream>
 #include <fstream>
 
+class Date;
+
+
+class FileHandler
+{
+private:
+	const std::string						_filename;
+	std::ifstream							_file;
+public:
+	FileHandler(const std::string& filename);
+	~FileHandler();
+
+	void						openFile();
+	std::vector<std::string>	readFile();
+	void						closeFile();
+};
 
 class Database
 {
-protected:
-	std::vector<std::pair<Date, float> >	_dataBase;
 private:
-	std::ifstream								_file;
-	const std::string							_filename;
+	std::vector<std::pair<Date, float> >	_dataBase;
+
 public:
-	Database(const std::string& filename);
+	Database(const std::vector<std::string>& content);
 	Database(const Database& other);
 	Database& operator=(const Database& other);
-	virtual ~Database();
+	~Database();
 
 	const std::vector<std::pair<Date, float>>&	getDB() const;
 	std::pair<Date, float>						findClosestDate(const Date& date) const;
@@ -28,21 +42,23 @@ private:
 	/// @brief default constructor, not used, private
 	Database();
 
-	void		_openFile();
-	void		_closeFile();
-
-	void   		_parse();
+	void   		_parse(const std::vector<std::string>& content);
 	void		_parseLine(const std::string& line);
 	float		_parseValue(const std::string& value);
-
 	bool		_isValidValue(float value);
 };
 
-class BitcoinExchange : public Database
+class BitcoinExchange
 {
 public:
 	BitcoinExchange(const std::string& filename);
 	~BitcoinExchange();
 
 	void	run();
+	void	printDB();
+
+
+private:
+	Database	_db;
+	FileHandler	_file;
 };

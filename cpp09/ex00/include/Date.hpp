@@ -12,16 +12,27 @@ public:
 	Date(const std::string& date);
 	~Date();
 
-	bool operator<(const Date& other) const;
-	bool operator>(const Date& other) const;
-    bool operator==(const Date& other) const;
-	bool operator>=(const Date& other) const;
-	bool operator<=(const Date& other) const;
-	bool operator!=(const Date& other) const;
+	bool	operator<(const Date& other) const;
+	bool	operator>(const Date& other) const;
+    bool	operator==(const Date& other) const;
+	bool	operator>=(const Date& other) const;
+	bool	operator<=(const Date& other) const;
+	bool	operator!=(const Date& other) const;
 
-	bool		isValid();
+	size_t	getDaySpan(const Date& date) const;
+
+	int		getYear() const;
+	int		getMonth() const;
+	int		getDay() const;
 
 private:
+	void		_parse(const std::string& date);
+	void		_isValid();
+	static bool	_isLeapYear(int year);
+	size_t		_daysFromStart(const Date& date) const;
 
-	void	_parse(const std::string& date);
+
+	Date(); // default constructor, not used
 };
+
+std::ostream&	operator<<(std::ostream& os, const Date& date);
