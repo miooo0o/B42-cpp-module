@@ -13,7 +13,9 @@ INCLUDE		=	-I./include -I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)main.cpp	
+SRCS		=	$(SRCS_DIR)main.cpp					\
+				$(SRCS_DIR)class/Date.cpp			\
+				$(SRCS_DIR)class/BitcoinExchange.cpp
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

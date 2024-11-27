@@ -9,12 +9,13 @@
 
 class Date;
 
-
 class FileHandler
 {
 private:
-	const std::string						_filename;
-	std::ifstream							_file;
+	std::string					_filename;
+	std::ifstream				_file;
+	std::string					_extension;
+
 public:
 	FileHandler(const std::string& filename);
 	~FileHandler();
@@ -22,43 +23,52 @@ public:
 	void						openFile();
 	std::vector<std::string>	readFile();
 	void						closeFile();
+	std::string					getExtension() const;
+
 };
 
-class Database
+class Data
 {
+
 private:
-	std::vector<std::pair<Date, float> >	_dataBase;
+	const std::multimap<Date, float>	_data;
 
 public:
-	Database(const std::vector<std::string>& content);
-	Database(const Database& other);
-	Database& operator=(const Database& other);
-	~Database();
+	Data(const std::vector<std::string>& content);
+	Data(const Data& other);
+	~Data();
 
-	const std::vector<std::pair<Date, float>>&	getDB() const;
-	std::pair<Date, float>						findClosestDate(const Date& date) const;
+	const std::multimap<Date, float>&	getData() const;
+	Date							findClosestDate(const Date& date) const;
 
 private:
 	/// @brief default constructor, not used, private
-	Database();
+	Data();
 
-	void   		_parse(const std::vector<std::string>& content);
-	void		_parseLine(const std::string& line);
-	float		_parseValue(const std::string& value);
-	bool		_isValidValue(float value);
+	std::multimap<Date, float>		_initializeData(const std::vector<std::string>& content) const;
+	std::pair<Date, float>		_parseLine(const std::string& line, std::string& delimiter) const;
+	float						_parseValue(const std::string& value) const;
+	std::string					_getDelimiter(const std::string& line) const;
 };
 
 class BitcoinExchange
 {
+private:
+	Data	_db;
+	Data	_bitcoin;
+
 public:
-	BitcoinExchange(const std::string& filename);
+	BitcoinExchange(const std::string& dbFilename, const std::string& bitcoinFilename);
+	BitcoinExchange(const Data& dateBase, const std::string& bitcoinFilename);
 	~BitcoinExchange();
 
 	void	run();
-	void	printDB();
-
-
 private:
-	Database	_db;
-	FileHandler	_file;
+	/// @brief default constructor, not used, private
+	BitcoinExchange();
+
+	Data	_createDataFromFile(const std::string& filename);
+	void	_processExchange();
+
+
 };
