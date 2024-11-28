@@ -39,13 +39,13 @@ public:
 	~Data();
 
 	const std::multimap<Date, float>&	getData() const;
-	Date							findClosestDate(const Date& date) const;
+	Date								findClosestDate(const Date& date) const;
 
 private:
 	/// @brief default constructor, not used, private
 	Data();
 
-	std::multimap<Date, float>		_initializeData(const std::vector<std::string>& content) const;
+	std::multimap<Date, float>	_initializeData(const std::vector<std::string>& content) const;
 	std::pair<Date, float>		_parseLine(const std::string& line, std::string& delimiter) const;
 	float						_parseValue(const std::string& value) const;
 	std::string					_getDelimiter(const std::string& line) const;
