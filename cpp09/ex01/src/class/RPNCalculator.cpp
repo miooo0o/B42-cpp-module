@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 23:12:13 by minakim           #+#    #+#             */
-/*   Updated: 2024/11/29 00:26:45 by minakim          ###   ########.fr       */
+/*   Updated: 2024/11/29 00:28:21 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ int	RPNCalculator::_ttoi(const std::string& token)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
 std::string	RPNCalculator::getLog() const
 {
 	return (_log);
