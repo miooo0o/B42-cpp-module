@@ -34,5 +34,6 @@ private:
 	void				_addLog(const std::string& msg);
 	std::string			_createLog(const std::string& targetOperator, const int left, const int right);
 	void				_printStackLog();
+
 	RPNCalculator();	// default, not used
 };
