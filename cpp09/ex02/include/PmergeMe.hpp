@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:27:59 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/15 16:02:05 by minakim          ###   ########.fr       */
+/*   Updated: 2025/01/16 13:09:58 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ private:
 	ListContainer	listContainer;
 	DequeContainer	dequeContainer;
 public:
-	PmergeMe(const std::list<int>& elements);
+	PmergeMe(const std::list<int>& elements, const int count);
 	~PmergeMe();
 
 	void	compareExecutionTimes();

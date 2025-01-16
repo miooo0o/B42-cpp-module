@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:25 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/15 16:47:00 by minakim          ###   ########.fr       */
+/*   Updated: 2025/01/16 13:15:06 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Validate::Validate(const int& argc, char** args)
 			std::string	trimmed = trim(args[i]);
 			processArg(trimmed);
 		}
-		isInitialized = true;
+		if (!elements.empty() && elements.size()== count)
+			isInitialized = true;
 	}
 }
 
@@ -55,16 +56,27 @@ bool	Validate::isNumber(std::string& str) const
 	return (true);
 }
 
+bool	Validate::isInterger(std::string& str) const
+{
+	std::istringstream	iss(str);
+	double				stash;
+
+	iss >> stash;
+	if (stash > INT_MAX || stash < INT_MIN)
+		throw std::invalid_argument("invalid input: number too large or small [" + str + "]");
+	return (true);
+}
+
 void	Validate::processArg(std::string& arg)
 {
-	std::istringstream iss(arg);
+	std::istringstream	iss(arg);
     std::string			token;
 
 	while (iss >> token)
 	{
 		if (token.empty())
     	    throw std::invalid_argument("invalid input: empty string");
-		if (isNumber(token))
+		if (isNumber(token) && isInterger(token))
 		{
 			elements.push_back(std::atoi(token.c_str()));
 			count++;
@@ -72,4 +84,17 @@ void	Validate::processArg(std::string& arg)
 		else
 			throw std::invalid_argument("invalid input: not a digit [" + token + "]");
 	}
+}
+
+
+/* getter */
+
+int	Validate::getCount()
+{
+	return (count);
+}
+
+std::list<int> Validate::getElements()
+{
+	return (elements);
 }

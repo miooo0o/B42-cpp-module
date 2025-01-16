@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:01:54 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/15 16:32:23 by minakim          ###   ########.fr       */
+/*   Updated: 2025/01/16 13:14:30 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <list>
 #include <sstream>
 #include <expected>
+#include <limits.h>
 
 class Validate
 {
@@ -22,16 +23,18 @@ private:
 	int             count;
 	std::list<int>  elements;
 	bool			isInitialized;
+
 public:
 	Validate(const int& argc, char** args);
 	~Validate();
 
-	bool    	isValidate() const;
-private:
-	void		processArg(std::string& arg);
-	std::string	trim(char* arg);
-	bool		isNumber(std::string& str) const;
+	bool    		isValidate() const;
+	int				getCount();
+	std::list<int>	getElements();
 
-	void    	setCount();
-	void		setElements();
+private:
+	void			processArg(std::string& arg);
+	std::string		trim(char* arg);
+	bool			isNumber(std::string& str) const;
+	bool			isInterger(std::string& str) const;
 };
