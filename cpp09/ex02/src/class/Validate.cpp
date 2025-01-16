@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:25 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/16 13:15:06 by minakim          ###   ########.fr       */
+/*   Updated: 2025/01/16 13:39:41 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ Validate::Validate(const int& argc, char** args)
 		if (!elements.empty() && elements.size()== count)
 			isInitialized = true;
 	}
+}
+
+Validate::~Validate()
+{
+}
+
+bool	Validate::isValidate() const
+{
+	return (isInitialized);
 }
 
 std::string	Validate::trim(char* arg)
