@@ -5,7 +5,7 @@ CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
 RM			= rm
 
 # standard
-NAME		=	RPN
+NAME		=	PmergeMe
 TARGET		=	./$(NAME)
 OBJS_DIR	=	./obj/
 SRCS_DIR	=	./src/
@@ -13,7 +13,10 @@ INCLUDE		=	-I./include -I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)main.cpp
+SRCS		=	$(SRCS_DIR)main.cpp \
+				$(SRCS_DIR)class/Validate.cpp
+				# $(SRCS_DIR)class/PmergeMe.cpp
+
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:25 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/16 13:39:41 by minakim          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:48:41 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,20 @@ Validate::Validate(const int& argc, char** args)
 		if (!elements.empty() && elements.size()== count)
 			isInitialized = true;
 	}
+	
 }
 
 Validate::~Validate()
 {
 }
 
-bool	Validate::isValidate() const
+bool	Validate::empty() const
 {
-	return (isInitialized);
+	if (count == 0 && elements.empty())
+		return (true);
+	if (!elements.empty() && count > 0 && elements.size() == count)
+		return (false);
+	throw std::runtime_error("runtime error: class-Validate() unset");
 }
 
 std::string	Validate::trim(char* arg)
@@ -76,6 +81,19 @@ bool	Validate::isInterger(std::string& str) const
 	return (true);
 }
 
+bool	Validate::isUniqueNumber(const int num) const
+{
+	if (elements.empty())
+		return (true);
+	std::list<int>::const_iterator it;
+	for (it = elements.begin(); it != elements.end(); ++it)
+	{
+		if (*it == num)
+			return (false);
+	}
+	return (true);
+}
+
 void	Validate::processArg(std::string& arg)
 {
 	std::istringstream	iss(arg);
@@ -87,7 +105,10 @@ void	Validate::processArg(std::string& arg)
     	    throw std::invalid_argument("invalid input: empty string");
 		if (isNumber(token) && isInterger(token))
 		{
-			elements.push_back(std::atoi(token.c_str()));
+			int num = std::stoi(token);
+			if (!isUniqueNumber(num))
+				throw std::invalid_argument("invalid input: duplicate number found in the list [" + token + "]");
+			elements.push_back(num);
 			count++;
 		}
 		else
@@ -95,10 +116,36 @@ void	Validate::processArg(std::string& arg)
 	}
 }
 
+bool	Validate::validated() const
+{
+	if (empty())
+    {
+        std::cerr << "error: empty input." << std::endl;
+        std::cerr << "Usage: ./PmergeMe <number1> <number2> ... <numberN>" << std::endl;
+        return (false);
+    }
+    if (getCount() < 2)
+    {
+        std::cerr << "error: insufficient input. Please provide at least two numbers." << std::endl;
+        std::cerr << "Usage: ./PmergeMe <number1> <number2> ... <numberN>" << std::endl;
+        return (false);
 
-/* getter */
+    }
+    if (!getValidate())
+    {
+		std::cerr << "error: validation failed. Unable to proceed with the given input." << std::endl;
+        return (false);
 
-int	Validate::getCount()
+    }
+	return (true);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Getter
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+int	Validate::getCount() const
 {
 	return (count);
 }
@@ -106,4 +153,39 @@ int	Validate::getCount()
 std::list<int> Validate::getElements()
 {
 	return (elements);
+}
+
+bool	Validate::getValidate() const
+{
+	return (isInitialized);
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// Test Method
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+void	Validate::print()
+{
+	std::cout << "element count: " << count << std::endl;
+	std::cout << "elements: " << std::flush;
+	if (elements.empty())
+	{
+		std::cout << "empty." << std::endl;
+	}
+	else
+	{
+		std::list<int>::const_iterator it;
+		for (it = elements.begin(); it != elements.end(); ++it)
+		{
+			std::cout << "[" << *it << "] " << std::flush;
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "initialized: " << std::flush;
+	if (isInitialized)
+		std::cout << "true." << std::endl;
+	else
+		std::cout << "false." << std::endl;
 }
