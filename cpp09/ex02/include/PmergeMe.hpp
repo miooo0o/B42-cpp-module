@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:27:59 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/16 13:09:58 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/03 16:23:41 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 class ContainerBase
 {
 protected:
+	std::list<int>		validated;
 	std::pair<int, int>	firstStack;
 	std::pair<int, int>	secondaryStack;
 	bool				isOddElem;
@@ -58,7 +59,8 @@ public:
 	DequeContainer(const std::list<int>& elements);
 	~DequeContainer();
 
-	const std::list<int> getSortedList();
+	const std::list<int>	getSortedList();
+	void	convertDeque(const std::list<int>& arguments);
 };
 
 class PmergeMe
@@ -67,7 +69,7 @@ private:
 	ListContainer	listContainer;
 	DequeContainer	dequeContainer;
 public:
-	PmergeMe(const std::list<int>& elements, const int count);
+	PmergeMe(const std::list<int>& elements);
 	~PmergeMe();
 
 	void	compareExecutionTimes();

@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:25:45 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/29 16:32:16 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/03 15:29:55 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ int main(int argc, char** argv)
 
         // test
         validate.print();
-
+        
+        // check if not validate
         if (!validate.validated())
             return (1);
+
+        PmergeMe    guri(validate.getElements());
+
     }
     catch(const std::exception& e)
     {
