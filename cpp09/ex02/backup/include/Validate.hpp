@@ -6,9 +6,11 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:01:54 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/29 15:47:26 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/08 15:19:47 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -32,9 +34,9 @@ public:
 	bool			validated() const;
 
 	// getter
-	bool    		getValidate() const;
-	int				getCount() const;
-	std::list<int>	getElements();
+	bool    				getValidated() const;
+	int						getCount() const;
+	const std::list<int>&	getList() const;
 
 private:
 	void			processArg(std::string& arg);

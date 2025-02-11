@@ -6,20 +6,20 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:02:25 by minakim           #+#    #+#             */
-/*   Updated: 2025/01/29 15:48:41 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/08 16:07:22 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Validate.hpp"
 
-Validate::Validate(const int& argc, char** args)
+Validate::Validate(const int& argc, char** argv)
 	: count(0), elements(), isInitialized(false)
 {
 	if (argc > 1)
 	{
 		for (int i = 1; i < argc; ++i)
 		{
-			std::string	trimmed = trim(args[i]);
+			std::string	trimmed = trim(argv[i]);
 			processArg(trimmed);
 		}
 		if (!elements.empty() && elements.size()== count)
@@ -131,7 +131,7 @@ bool	Validate::validated() const
         return (false);
 
     }
-    if (!getValidate())
+    if (!getValidated())
     {
 		std::cerr << "error: validation failed. Unable to proceed with the given input." << std::endl;
         return (false);
@@ -150,12 +150,12 @@ int	Validate::getCount() const
 	return (count);
 }
 
-std::list<int> Validate::getElements()
+const std::list<int>& Validate::getList() const
 {
 	return (elements);
 }
 
-bool	Validate::getValidate() const
+bool	Validate::getValidated() const
 {
 	return (isInitialized);
 }
