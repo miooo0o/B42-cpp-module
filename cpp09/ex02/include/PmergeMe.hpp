@@ -36,7 +36,7 @@ struct enable_if<true, T>
 
 ////////////////////////////////////////////////////////////////////////////////
 
-template <typename C>
+template <typename C, typename P>
 class PmergeMe
 {
 protected:
@@ -48,10 +48,10 @@ protected:
 
 public:
 	PmergeMe(int ac, char** av);
-	virtual ~PmergeMe() {}
+	~PmergeMe() {}
 
 	void		sort();
-	const C&	getSortedList() const;
+	const C&	getData() const;
 
 	bool		getIsSorted() const { return _isSorted; }
 	std::string	getExecutionDuration() const;
@@ -60,39 +60,50 @@ private:
 	void		_validateAndStore(int ac, char** av);
 	bool		_isNumber(const std::string& str) const;
 	bool		_isInteger(std::string& str) const;
+	bool		_isDuplicateNumber(int num) const;
+	bool		_baseCase(size_t n)
 };
 
-template <typename C>
-PmergeMe<C>::PmergeMe(int ac, char** av) : _isSorted(false)
+template <typename C, typename P>
+PmergeMe<C, P>::PmergeMe(int ac, char** av)
+	: _isSorted(false)
 {
 	_validateAndStore(ac, av);
 }
 
-template <typename C>
-void PmergeMe<C>::_validateAndStore(int ac, char** av)
+template <typename C, typename P>
+bool	PmergeMe<C, P>::_isDuplicateNumber(int num) const
+{
+	typename C::iterator it;
+	for (it = _data.begin(); it != _data.end(); ++it)
+	{
+		if (*it == num)
+			return (true);
+	}
+	return (false);
+}
+
+template <typename C, typename P>
+void	PmergeMe<C, P>::_validateAndStore(int ac, char** av)
 {
 	if (ac <= 1)
 		throw std::invalid_argument("error: at least one number is required.");
 
 	for (int i = 1; i < ac; ++i)
 	{
-		std::string target(av[i]);
-		if (!_isNumber(target) || !_isInteger(target))
-			throw std::invalid_argument("error: invalid number [" + target + "]");
-
+		std::string	target(av[i]);
+		if (!_isNumber(target))
+			throw std::invalid_argument("error: invalid input [" + target + "]: not a number");
+		if (!_isInteger(target))
+			throw std::invalid_argument("error: invalid input [" + target + "]: not integer");
 		int num = std::atoi(target.c_str());
-		typename C::iterator it;
-		for (it = _data.begin(); it != _data.end(); ++it)
-		{
-			if (*it == num)
-				throw std::invalid_argument("error: duplicate number [" + target + "]");
-		}
-		_data.push_back(num);
+		if (!_isDuplicateNumber(num))
+			_data.push_back(num);
 	}
 }
 
-template <typename C>
-bool PmergeMe<C>::_isNumber(const std::string& str) const
+template <typename C, typename P>
+bool PmergeMe<C, P>::_isNumber(const std::string& str) const
 {
 	size_t	i = 0;
 
@@ -107,8 +118,9 @@ bool PmergeMe<C>::_isNumber(const std::string& str) const
 	}
 	return (true);
 }
-template <typename C>
-bool	PmergeMe<C>::_isInteger(std::string& str) const
+
+template <typename C, typename P>
+bool	PmergeMe<C, P>::_isInteger(std::string& str) const
 {
 	std::istringstream	iss(str);
 	double				stash;
@@ -119,30 +131,47 @@ bool	PmergeMe<C>::_isInteger(std::string& str) const
 	return (true);
 }
 
-/// @brief list
-template <typename C>
-void PmergeMe<C>::sort()
-{
-	typename enable_if<is_same<C, std::list<int> >::value>::type*   dummy = 0;
 
-	_isSorted = true;
+template <typename C, typename P>
+bool PmergeMe<C, P>::_baseCase(size_t n)
+{
+	if (n == 2)
+	{
+		// if [0] > [1], swap;
+		_endTime = std::clock(); // std::time(NULL)
+		_isSorted = true;
+		return (true);
+	}
+	return (false);
 }
 
-/// @brief deque
-template <>
-void PmergeMe<std::deque<int> >::sort()
+template <typename C, typename P>
+void	PmergeMe<C, P>::sort()
 {
-	_isSorted = true;
+
+	bool	isDeque = is_same<C, std::deque<int> >::value;
+	_startTime = std::clock();
+	if (_baseCase(_data.size()))
+		_endTime = std::clock(); return ;
+
+	typename P				pairs;
+	typename C::iterator	it = _data.begin();
+	while (it != _date.end())
+	{
+		int first = *it;
+		++it;
+	}
+
 }
 
-template <typename C>
-const C& PmergeMe<C>::getSortedList() const
+template <typename C, typename P>
+const C& PmergeMe<C, P>::getData() const
 {
-	return _data;
+	return (_data);
 }
 
-template <typename C>
-std::string PmergeMe<C>::getExecutionDuration() const
+template <typename C, typename P>
+std::string PmergeMe<C, P>::getExecutionDuration() const
 {
 if (!getIsSorted)
 		throw std::runtime_error("sorting not completed, unable to retrieve duration.");
