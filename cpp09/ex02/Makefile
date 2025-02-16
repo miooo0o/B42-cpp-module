@@ -13,9 +13,7 @@ INCLUDE		=	-I./include -I./src
 #LIBS_DIR	=	./lib/
 
 # sources
-SRCS		=	$(SRCS_DIR)main.cpp \
-				$(SRCS_DIR)class/Validate.cpp
-				# $(SRCS_DIR)class/PmergeMe.cpp
+SRCS		=	$(SRCS_DIR)main.cpp
 
 
 OBJS		=	$(patsubst $(SRCS_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
