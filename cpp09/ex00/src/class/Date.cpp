@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:03:12 by minakim           #+#    #+#             */
-/*   Updated: 2024/11/27 20:33:28 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:18:04 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ std::string	Date::toString() const
 		prefixMonth = "0";
 	if (_day >= 1 && _day <= 9)
 		prefixDay = "0";
+		
 	// FIXME: can't use to_string
 	return (std::to_string(_year) + "-" + prefixMonth + std::to_string(_month) + "-" + prefixDay + std::to_string(_day));
 }

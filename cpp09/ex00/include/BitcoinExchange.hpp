@@ -6,6 +6,8 @@
 #include <tuple>
 #include <iostream>
 #include <fstream>
+#include <limits>
+#include <cmath>
 
 class Date;
 

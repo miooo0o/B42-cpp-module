@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 12:50:23 by minakim           #+#    #+#             */
-/*   Updated: 2024/11/27 20:55:23 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:21:45 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,4 +272,21 @@ void	BitcoinExchange::_processExchange()
 			std::cerr << "Error: bad input => " << it->first << " : " << e.what() << std::endl;
 		}
     }
+}
+
+
+
+void	BitcoinExchange::stoi(std::string str)
+{
+
+}
+
+void	BitcoinExchange::stof(std::string str)
+{
+
+}
+
+std::string	BitcoinExchange::toString()
+{
+	
 }

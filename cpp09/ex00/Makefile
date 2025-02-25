@@ -1,7 +1,7 @@
 # Alias
 CXX			= c++
 VERSION		= -std=c++98
-CXXFLAGS	= -Wall -Werror -Wextra $(VERSION)
+CXXFLAGS	= -Wall -Werror -Wextra $(VERSION) -g
 RM			= rm
 
 # standard
