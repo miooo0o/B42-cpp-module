@@ -6,12 +6,12 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 23:12:13 by minakim           #+#    #+#             */
-/*   Updated: 2025/02/25 13:25:40 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:27:02 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPNCalculator.hpp"
-#include <climits>
+#include "Utils.hpp"
 
 // default constructor, not used
 RPNCalculator::RPNCalculator()
@@ -42,15 +42,6 @@ int	RPNCalculator::calculate()
 	return (_stack.top());
 }
 
-std::string	RPNCalculator::toString(int number)
-{
-	std::ostringstream	oss;
-	oss << number;
-	if (oss.fail() || oss.str().empty())
-		throw std::runtime_error("failed to convert number to string.");
-	return (oss.str());
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
 void	RPNCalculator::_parse(const std::string& expression)
@@ -71,7 +62,7 @@ void	RPNCalculator::_parse(const std::string& expression)
 			else
 			{
 				_digitCount++;
-				_stack.push(_ttoi(token));
+				_stack.push(Utils::ttoi(token));
 			}
 		}
 		else
@@ -113,13 +104,13 @@ void	RPNCalculator::_applyOperator(const std::string& targetOperator, const int 
 		_stack.push(left / right);
 	}
 
-	_addLog(toString(left) + " " + targetOperator + " " + toString(right) + " = " + toString(_stack.top()));
+	_addLog(Utils::to_string(left) + " " + targetOperator + " " + Utils::to_string(right) + " = " + Utils::to_string(_stack.top()));
 }
 
 void	RPNCalculator::_addLog(const std::string& msg)
 {
 	static int	index = 1;
-	_log += "[" + toString(index++) + "] ";
+	_log += "[" + Utils::to_string(index++) + "] ";
 	_log += msg + "\n";
 }
 
@@ -130,7 +121,7 @@ std::string	RPNCalculator::_createLog(const std::string& targetOperator, const i
 		result = "can not division by zero.";
 	else
 		result = _stack.top();
-	return (toString(left) + " " + targetOperator + " " + toString(right) + " = " + result);
+	return (Utils::to_string(left) + " " + targetOperator + " " + Utils::to_string(right) + " = " + result);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -143,7 +134,7 @@ bool	RPNCalculator::_isValid(const std::string& token)
 	{
 		try
         {
-            _ttoi(token);
+            Utils::ttoi(token);
             return (true);
         }
         catch (const std::exception& e)
@@ -172,22 +163,6 @@ bool	RPNCalculator::_isOperator(const std::string& op)
 bool	RPNCalculator::_isOperator(char op)
 {
 	return (op == '+' || op == '-' || op == '*' || op == '/');
-}
-
-int	RPNCalculator::_ttoi(const std::string& token)
-{
-	try
-	{
-		double	number = std::stod(token);
-		if (number > INT_MAX || number < INT_MIN)
-			throw std::overflow_error("number out of range.");
-		return (static_cast<int>(number));
-	}
-	catch (const std::exception& e)
-	{
-		throw std::runtime_error(std::string("Invalid number: ") + e.what());
-	}
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -220,7 +195,7 @@ void	RPNCalculator::printLog() const
 		std::cout << getLog() << std::endl;
 	}
 	else
-		std::cout << "[ ] no log" << std::endl;
+		std::cout << "[ ] log empty" << std::endl;
 }
 
 

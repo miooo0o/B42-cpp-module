@@ -6,11 +6,12 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 21:03:12 by minakim           #+#    #+#             */
-/*   Updated: 2025/02/25 13:18:04 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:40:28 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Date.hpp"
+#include "Utils.hpp"
 
 Date::Date(const std::string& date)
 	: _year(0), _month(0), _day(0)
@@ -75,9 +76,7 @@ std::string	Date::toString() const
 		prefixMonth = "0";
 	if (_day >= 1 && _day <= 9)
 		prefixDay = "0";
-		
-	// FIXME: can't use to_string
-	return (std::to_string(_year) + "-" + prefixMonth + std::to_string(_month) + "-" + prefixDay + std::to_string(_day));
+	return (Utils::to_string(_year) + "-" + prefixMonth + Utils::to_string(_month) + "-" + prefixDay + Utils::to_string(_day));
 }
 
 std::ostream&	operator<<(std::ostream& os, const Date& date)
@@ -120,9 +119,9 @@ void	Date::_parse(const std::string& date)
 		month.find_first_not_of("0123456789") != std::string::npos ||
 		day.find_first_not_of("0123456789") != std::string::npos)
 		throw std::invalid_argument("Invalid date format: " + year + "-" + month + "-" + day);
-	_year = std::stoi(year);
-	_month = std::stoi(month);
-	_day = std::stoi(day);
+	_year = Utils::stoi(year);
+	_month = Utils::stoi(month);
+	_day = Utils::stoi(day);
 }
 
 std::string	Date::trim(const std::string& line)

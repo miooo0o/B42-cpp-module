@@ -19,8 +19,6 @@ public:
 	std::string			getLog() const;
 	void				printLog() const;
 
-	static std::string	toString(int number);
-
 private:
     void                _parse(const std::string& expression);
 	bool                _isOperator(const std::string& op);
@@ -28,7 +26,6 @@ private:
     bool                _isValid(const std::string& line);
 	void				_executeOperator(const std::string& targetOperator);
 	void				_applyOperator(const std::string& targetOperator, const int left, const int right);
-	int					_ttoi(const std::string& token);
 	bool				_isDigitToken(const std::string& token);
 
 	void				_addLog(const std::string& msg);

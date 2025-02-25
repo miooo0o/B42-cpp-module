@@ -6,12 +6,13 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 12:50:23 by minakim           #+#    #+#             */
-/*   Updated: 2025/02/25 13:26:15 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:07:23 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include "Date.hpp"
+#include "Utils.hpp"
 
 ///////////////////////////////////////////////////////////////////////////////
 /// FileHandler
@@ -106,6 +107,7 @@ std::multimap<Date, float> Data::_initializeData
 	for (; it != content.end(); ++it)
 	{
 	    std::pair<Date, float> parsedData = _parseLine(*it, delimiter);
+		// std::cout << parsedData.first << " | " << Utils::to_string(parsedData.second) << std::endl;
 	    data.insert(parsedData);
 	}
 
@@ -152,7 +154,7 @@ float	Data::_parseValue(const std::string& value) const
 {
 	try
 	{
-		return (std::stof(Date::trim(value)));
+		return (Utils::stof(Date::trim(value)));
 	}
 	catch (const std::exception& e)
 	{
@@ -251,9 +253,9 @@ void	BitcoinExchange::_processExchange()
 
         	if (std::isnan(amountOfBitcoin))
         		throw std::out_of_range("there is no exchange rate.");
-            if (amountOfBitcoin <= 0)
+            else if (amountOfBitcoin <= 0)
                 throw std::out_of_range("not a positive number.");
-            if (amountOfBitcoin > 10000)
+            else if (amountOfBitcoin > 10000)
                 throw std::out_of_range("too large a number.");
 
             Date	closestDate = _db.findClosestDate(currentDate);
@@ -265,37 +267,17 @@ void	BitcoinExchange::_processExchange()
         }
         catch (const std::out_of_range& e)
         {
-            std::cerr << "Error: bad input => " << it->first << " : " << e.what() << std::endl;
-        }
+			if (std::isnan(it->second))
+            	std::cerr << "Error: bad input => \"date: " << it->first << "\" " << e.what() << std::endl;
+			else
+				std::cerr << "Error: bad input => \"date: " << it->first << ", value: " << it->second << "\" " << e.what() << std::endl;
+		}
 		catch (const std::invalid_argument& e)
 		{
-			std::cerr << "Error: bad input => " << it->first << " : " << e.what() << std::endl;
+			if (std::isnan(it->second))
+				std::cerr << "Error: bad input => \"date: " << it->first << "\" " << e.what() << std::endl;
+			else
+				std::cerr << "Error: bad input => \"date: " << it->first << ", value: " << it->second << "\" " << e.what() << std::endl;
 		}
     }
-}
-
-
-// TODO: make: util cpp
-void	BitcoinExchange::stoi(std::string str)
-{
-
-}
-
-void	BitcoinExchange::stof(std::string str)
-{
-
-}
-
-void	BitcoinExchange::stod(std::string str)
-{
-	
-}
-
-std::string	BitcoinExchange::toString()
-{
-	std::ostringstream	oss;
-	oss << number;
-	if (oss.fail() || oss.str().empty())
-		throw std::runtime_error("failed to convert number to string.");
-	return (oss.str());
 }
