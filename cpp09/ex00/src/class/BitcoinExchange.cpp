@@ -6,7 +6,7 @@
 /*   By: minakim <minakim@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 12:50:23 by minakim           #+#    #+#             */
-/*   Updated: 2025/02/25 13:21:45 by minakim          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:26:15 by minakim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,7 @@ void	BitcoinExchange::_processExchange()
 }
 
 
-
+// TODO: make: util cpp
 void	BitcoinExchange::stoi(std::string str)
 {
 
@@ -286,7 +286,16 @@ void	BitcoinExchange::stof(std::string str)
 
 }
 
-std::string	BitcoinExchange::toString()
+void	BitcoinExchange::stod(std::string str)
 {
 	
+}
+
+std::string	BitcoinExchange::toString()
+{
+	std::ostringstream	oss;
+	oss << number;
+	if (oss.fail() || oss.str().empty())
+		throw std::runtime_error("failed to convert number to string.");
+	return (oss.str());
 }
