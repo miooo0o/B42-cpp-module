@@ -4,30 +4,30 @@
 
 int main()
 {
-    std::vector<std::string> testInputs;
-    testInputs.push_back("42");           // Integer
-    testInputs.push_back("-42");          // Negative integer
-    testInputs.push_back("0");            // Zero
-    testInputs.push_back("42.0f");        // Floating-point (float)
-    testInputs.push_back("nan");          // NaN
-    testInputs.push_back("nanf");         // NaN float
-    testInputs.push_back("+inf");         // Positive infinity
-    testInputs.push_back("-inf");         // Negative infinity
-    testInputs.push_back("a");            // Character
-    testInputs.push_back("127");          // Max char value
-    testInputs.push_back("128");          // Out of char range
-    testInputs.push_back("3.1415");       // Double type floating-point
-    testInputs.push_back("1e10");         // Large double value
-    testInputs.push_back("-3.40282e38");  // Near float minimum value
-    testInputs.push_back("invalid");      // Invalid format
-    testInputs.push_back("42..24");       // Invalid format
-    testInputs.push_back("42.24ff");      // Invalid format
-    testInputs.push_back("-inffff");      // Invalid format
+    const char* testInputs[] = {
+        "42",           // Integer
+        "-42",          // Negative integer
+        "0",            // Zero
+        "42.0f",        // Floating-point (float)
+        "nan",          // NaN
+        "nanf",         // NaN float
+        "+inf",         // Positive infinity
+        "-inf",         // Negative infinity
+        "a",            // Character
+        "127",          // Max char value
+        "128",          // Out of char range
+        "3.1415",       // Double type floating-point
+        "1e10",         // Large double value
+        "-3.40282e38",  // Near float minimum value
+        "invalid",      // Invalid format
+        "42..24",       // Invalid format
+        "42.24ff",      // Invalid format
+        "-inffff"       // Invalid format
+    };
 
+    const std::size_t inputCount = sizeof(testInputs) / sizeof(testInputs[0]);
 
-
-
-    for (std::size_t i = 0; i < testInputs.size(); ++i)
+    for (std::size_t i = 0; i < inputCount; ++i)
     {
         std::cout << "=====================================" << std::endl;
         std::cout << "Testing input: \"" << testInputs[i] << "\"" << std::endl;
